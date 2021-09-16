@@ -1,0 +1,529 @@
+##==============================================##
+##                                              ##
+##                    SETUP                     ##
+##                                              ##
+##==============================================##
+1) npm install --save tailwindcss
+2) add src/assets/css/tailwind.css with:
+	@tailwind base;
+	@tailwind components;
+	@tailwind utilities;
+3) npx tailwaind init at root
+	- tailwind.config.js
+		{
+			// REMOVES UNUSED STYLES IN PRODUCTION
+			purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
+			darkMode: false,
+			theme: {
+				// CUSTOM CLASSES
+				extend: {},
+			},
+			// CHANGE HOW IT WORKS
+			variants: {
+				extend: {},
+			},
+			// EXTERNAL PLUGINS: TRANSFORMATIONS, ELEVATIONS, GRIDS
+			plugins: [],
+		}
+4) npx tailwind build myStyle.cs -o output.css (OPTIONAL)
+5) Use PostCSS (Vue specific)
+	- add postcss.config.js
+	module.exports = {
+			plugins: {
+				tailwindcss: {},
+				autoprefixer: {},
+			},
+		}
+6) Utilities first
+	- Design system
+	- Responsive utilities
+	- State variants
+	- Maintanability
+		- Use SFC.vue
+		- Use .newClass @apply{ a billion other classes}
+
+
+
+##==============================================##
+##                                              ##
+##                    DESIGN                    ##
+##                                              ##
+##==============================================##
+##--------------- RESPONSIVENESS ---------------##
+Responsive Design:
+	- size: min width
+	- sm: 640px
+	- md: 768px
+	- lg: 1024px
+	- xl: 1280px
+	- 2xl: 1536px
+	- eg:
+		sm:className1 md:className2 className3
+		- default: className3
+		- sm, md 
+	- custom: tailwind.config.js
+		theme:{
+			screens:{
+				screenName: 'XXXpx'
+			}
+		}
+
+
+##------------------- STATES -------------------##
+## focus
+	custom: tailwind.config.js
+	variants: {
+		extend: {
+			maxHeight: ['focus']
+		}
+	}
+	- default:
+		- accessibility
+		- backgroundColor
+		- backgroundOpacity
+		- borderColor
+		- borderOpacity
+		- boxShadow
+		- gradientColorStops
+		- opacity
+		- outline
+		- placeholderColor
+		- placeholderOpacity
+		- ringColor
+		- ringOffsetColor
+		- ringOffsetWidth
+		- ringOpacity
+		- ringWidth
+		- rotate
+		- scale
+		- skew
+		- textColor
+		- textDecoration
+		- textOpacity
+		- translate
+		- zIndex
+## hover
+	custom: tailwind.config.js
+	variants: {
+		extend: {
+			padding: ['hover']
+		}
+	}
+	- default:
+		- backgroundColor
+		- backgroundOpacity
+		- borderColor
+		- borderOpacity
+		- boxShadow
+		- gradientColorStops
+		- opacity
+		- rotate
+		- scale
+		- skew
+		- textColor
+		- textDecoration
+		- textOpacity
+		- translate
+## active
+## group-hover
+	Styles child elements:
+	<parent class = "group">
+		<child1 class = "group-hover:class1"></child1>
+		<child2 class = "group-hover:class2"></child2>
+	</parent>
+	- default:
+		- backgroundColor
+		- backgroundOpacity
+		- borderColor
+		- borderOpacity
+		- boxShadow
+		- opacity
+		- textColor
+		- textDecoration
+		- textOpacity
+## group-focus
+	<parent class = "group">
+		<child1 class = "group-focus:class1"></child1>
+		<child2 class = "group-focus:class2"></child2>
+	</parent>
+## focus-within
+	applies only when child element has focus
+	- default:
+		- accessibility
+		- backgroundColor
+		- backgroundOpacity
+		- borderColor
+		- borderOpacity
+		- boxShadow
+		- opacity
+		- outline
+		- ringColor
+		- ringOffsetColor
+		- ringOffsetWidth
+		- ringOpacity
+		- ringWidth
+		- textColor
+		- textDecoration
+		- textOpacity
+		- zIndex 
+## focus-visible
+	only when user is using keyboard
+	- can use postcss-focus-visible in Chrome, Edge, Firefox
+
+## motion-safe
+	only works without reduce motion
+
+## motion-reduce
+	works with reduced motion
+
+## disabled
+## visited
+	visited links
+## first / last / odd / even
+	for first / last child / odd / even (v-for) 
+
+## for custom css:
+	@variants variantName{
+		.className{
+		// STYLES
+		}
+	}
+	- default: 
+	{
+		accessibility: ['responsive', 'focus-within', 'focus'],
+		alignContent: ['responsive'],
+		alignItems: ['responsive'],
+		alignSelf: ['responsive'],
+		animation: ['responsive'],
+		appearance: ['responsive'],
+		backdropBlur: ['responsive'],
+		backdropBrightness: ['responsive'],
+		backdropContrast: ['responsive'],
+		backdropFilter: ['responsive'],
+		backdropGrayscale: ['responsive'],
+		backdropHueRotate: ['responsive'],
+		backdropInvert: ['responsive'],
+		backdropOpacity: ['responsive'],
+		backdropSaturate: ['responsive'],
+		backdropSepia: ['responsive'],
+		backgroundAttachment: ['responsive'],
+		backgroundBlendMode: ['responsive'],
+		backgroundClip: ['responsive'],
+		backgroundColor: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
+		backgroundImage: ['responsive'],
+		backgroundOpacity: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
+		backgroundPosition: ['responsive'],
+		backgroundRepeat: ['responsive'],
+		backgroundSize: ['responsive'],
+		backgroundOrigin: ['responsive'],
+		blur: ['responsive'],
+		borderCollapse: ['responsive'],
+		borderColor: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
+		borderOpacity: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
+		borderRadius: ['responsive'],
+		borderStyle: ['responsive'],
+		borderWidth: ['responsive'],
+		boxDecorationBreak: ['responsive'],
+		boxShadow: ['responsive', 'group-hover', 'focus-within', 'hover', 'focus'],
+		boxSizing: ['responsive'],
+		brightness: ['responsive'],
+		clear: ['responsive'],
+		container: ['responsive'],
+		contrast: ['responsive'],
+		cursor: ['responsive'],
+		display: ['responsive'],
+		divideColor: ['responsive', 'dark'],
+		divideOpacity: ['responsive', 'dark'],
+		divideStyle: ['responsive'],
+		divideWidth: ['responsive'],
+		dropShadow: ['responsive'],
+		fill: ['responsive'],
+		filter: ['responsive'],
+		flex: ['responsive'],
+		flexDirection: ['responsive'],
+		flexGrow: ['responsive'],
+		flexShrink: ['responsive'],
+		flexWrap: ['responsive'],
+		float: ['responsive'],
+		fontFamily: ['responsive'],
+		fontSize: ['responsive'],
+		fontSmoothing: ['responsive'],
+		fontStyle: ['responsive'],
+		fontVariantNumeric: ['responsive'],
+		fontWeight: ['responsive'],
+		gap: ['responsive'],
+		gradientColorStops: ['responsive', 'dark', 'hover', 'focus'],
+		grayscale: ['responsive'],
+		gridAutoColumns: ['responsive'],
+		gridAutoFlow: ['responsive'],
+		gridAutoRows: ['responsive'],
+		gridColumn: ['responsive'],
+		gridColumnEnd: ['responsive'],
+		gridColumnStart: ['responsive'],
+		gridRow: ['responsive'],
+		gridRowEnd: ['responsive'],
+		gridRowStart: ['responsive'],
+		gridTemplateColumns: ['responsive'],
+		gridTemplateRows: ['responsive'],
+		height: ['responsive'],
+		hueRotate: ['responsive'],
+		inset: ['responsive'],
+		invert: ['responsive'],
+		isolation: ['responsive'],
+		justifyContent: ['responsive'],
+		justifyItems: ['responsive'],
+		justifySelf: ['responsive'],
+		letterSpacing: ['responsive'],
+		lineHeight: ['responsive'],
+		listStylePosition: ['responsive'],
+		listStyleType: ['responsive'],
+		margin: ['responsive'],
+		maxHeight: ['responsive'],
+		maxWidth: ['responsive'],
+		minHeight: ['responsive'],
+		minWidth: ['responsive'],
+		mixBlendMode: ['responsive'],
+		objectFit: ['responsive'],
+		objectPosition: ['responsive'],
+		opacity: ['responsive', 'group-hover', 'focus-within', 'hover', 'focus'],
+		order: ['responsive'],
+		outline: ['responsive', 'focus-within', 'focus'],
+		overflow: ['responsive'],
+		overscrollBehavior: ['responsive'],
+		padding: ['responsive'],
+		placeContent: ['responsive'],
+		placeItems: ['responsive'],
+		placeSelf: ['responsive'],
+		placeholderColor: ['responsive', 'dark', 'focus'],
+		placeholderOpacity: ['responsive', 'dark', 'focus'],
+		pointerEvents: ['responsive'],
+		position: ['responsive'],
+		resize: ['responsive'],
+		ringColor: ['responsive', 'dark', 'focus-within', 'focus'],
+		ringOffsetColor: ['responsive', 'dark', 'focus-within', 'focus'],
+		ringOffsetWidth: ['responsive', 'focus-within', 'focus'],
+		ringOpacity: ['responsive', 'dark', 'focus-within', 'focus'],
+		ringWidth: ['responsive', 'focus-within', 'focus'],
+		rotate: ['responsive', 'hover', 'focus'],
+		saturate: ['responsive'],
+		scale: ['responsive', 'hover', 'focus'],
+		sepia: ['responsive'],
+		skew: ['responsive', 'hover', 'focus'],
+		space: ['responsive'],
+		stroke: ['responsive'],
+		strokeWidth: ['responsive'],
+		tableLayout: ['responsive'],
+		textAlign: ['responsive'],
+		textColor: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
+		textDecoration: ['responsive', 'group-hover', 'focus-within', 'hover', 'focus'],
+		textOpacity: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
+		textOverflow: ['responsive'],
+		textTransform: ['responsive'],
+		transform: ['responsive'],
+		transformOrigin: ['responsive'],
+		transitionDelay: ['responsive'],
+		transitionDuration: ['responsive'],
+		transitionProperty: ['responsive'],
+		transitionTimingFunction: ['responsive'],
+		translate: ['responsive', 'hover', 'focus'],
+		userSelect: ['responsive'],
+		verticalAlign: ['responsive'],
+		visibility: ['responsive'],
+		whitespace: ['responsive'],
+		width: ['responsive'],
+		wordBreak: ['responsive'],
+		zIndex: ['responsive', 'focus-within', 'focus']
+	}
+
+
+
+##----------------- DARK MODE ------------------##
+## tailwind.config.js
+	# Depends on if dark mode is enabled
+		darkMode: 'media',
+		variants:{
+			extend:{
+				textOpacity: ['dark']
+			}
+		}
+	# Manually (dark:className) :
+		darkMode: 'class'
+
+		<parent class = "dark">
+			<child class = "defaultClass dark:className"></child>
+		</parent>
+
+
+
+##---------------- BASE STYLES -----------------##
+## CLASSES (default html way)
+	
+## USING CSS (tailwind.css)
+	@layer base{
+		h1{
+			@apply className;
+		}
+		@font-face {
+			font-family: Proxima Nova;
+			font-weight: 400;
+			src: url(/fonts/proxima-nova/400-regular.woff) format("woff");
+		}
+		@font-face {
+			font-family: Proxima Nova;
+			font-weight: 500;
+			src: url(/fonts/proxima-nova/500-medium.woff) format("woff");
+		}
+	}
+
+
+## PLUGIN
+	plugins:[
+		plugin(function({ addBase, theme}){
+			addBase({
+				h1: { fontSize: theme('fontSize.2xl')},
+				h2: { fontSize: theme('fontSize.xl')},
+				h3: { fontSize: theme('fontSize.lg')},
+			})
+		})
+
+	]
+
+
+
+##==============================================##
+##                                              ##
+##                UTILITY FIRST                 ##
+##                                              ##
+##==============================================##
+##------------- REUSING COMPONENTS -------------##
+## SFC
+
+## tailwind.css
+	@layer components{
+		.newClass{
+			@apply other classes
+		}
+	}
+
+## tailwin.config.js
+		const plugin = require('tailwindcss/plugin')
+
+		module.exports = {
+			plugins: [
+				plugin(function({ addComponents, theme }) {
+					const buttons = {
+						'.btn': {
+							padding: `${theme('spacing.2')} ${theme('spacing.4')}`,
+								borderRadius: theme('borderRadius.md'),
+								fontWeight: theme('fontWeight.600'),
+						},
+						'.btn-indigo': {
+							backgroundColor: theme('colors.indigo.500'),
+							color: theme('colors.white'),
+							'&:hover': {
+							backgroundColor: theme('colors.indigo.600')
+							},
+						},
+					}
+
+					addComponents(buttons)
+				})
+			]
+		}
+
+
+##--------------- NEW UTILITIES ----------------##
+## CSS: tailwind.css
+	@layer utilities {
+		.scroll-snap-none {
+			scroll-snap-type: none;
+		}
+		.scroll-snap-x {
+			scroll-snap-type: x;
+		}
+		.scroll-snap-y {
+			scroll-snap-type: y;
+		}
+	}
+
+## GENERATE RESPONSIVE VARIANTS: tailwind.css
+	@layer utilities {
+		@variants responsive{
+			.scroll-snap-none {
+				scroll-snap-type: none;
+			}
+			.scroll-snap-x {
+				scroll-snap-type: x;
+			}
+			.scroll-snap-y {
+				scroll-snap-type: y;
+			}
+		}
+	}
+
+## GENERATE STATE VARIANTS: tailwind.css
+	@layer utilities {
+		@variants hover, focus{
+			.scroll-snap-none {
+				scroll-snap-type: none;
+			}
+			.scroll-snap-x {
+				scroll-snap-type: x;
+			}
+			.scroll-snap-y {
+				scroll-snap-type: y;
+			}
+		}
+	}
+
+
+## PLUGIN: tailwind.config.js
+	const plugin = require('tailwindcss/plugin')
+	module.exports = {
+		plugins: [
+			plugin(function({ addUtilities }) {
+				const newUtilities = {
+					'.filter-none': {
+						filter: 'none',
+					},
+					'.filter-grayscale': {
+						filter: 'grayscale(100%)',
+					},
+				}
+
+				addUtilities(newUtilities, ['responsive', 'hover'])
+			})
+		]
+	}
+
+
+
+##----------- FUNCTIONS & DIRECTIVES -----------##
+## @tailwind: tailwind.css
+	@tailwind base;
+	@tailwind components;
+	@tailwind utilities;
+	@tailwind screens;
+
+## @apply
+
+## @layer base / components / utilities
+
+
+## @variants focus, hover
+
+
+## @responsive
+
+
+## @screen sm, md, lg, etc{
+	
+}
+
+
+## @ media screen(sm / md / lg/ etc){
+	
+}
+
+## theme(spacing[2.5])
+	- colors.blue.500
