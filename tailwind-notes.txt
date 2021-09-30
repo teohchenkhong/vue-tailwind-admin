@@ -8,7 +8,7 @@
 	@tailwind base;
 	@tailwind components;
 	@tailwind utilities;
-3) npx tailwind init at root
+3) npx tailwind init -p at root
 	- tailwind.config.js
 		{
 			// REMOVES UNUSED STYLES IN PRODUCTION
@@ -546,13 +546,17 @@ Responsive Design:
 ##                   CLASSES                    ##
 ##                                              ##
 ##==============================================##
+##------------------ DISPLAY -------------------##
+displat: block, inline-block, hidden
+cursor : cursor-cursorName
+
 ##------------------ SPACING -------------------##
 ## DIRECTIONS: add x, y, t,r,b,l
 
 paddings	: p-n
 margins		: m-n
-width 		: w-n, w-full, w-1/n
-height 		: h-n
+width 		: w-n, w-full, w-1/n, w-auto
+height 		: h-n, h-full, h-1/n, h-auto
 background 	: bg-auto, bg-cover, bg-contain
 take up the rest: flex-grow
 
@@ -600,3 +604,2290 @@ opacity 	: opacity-n (multiples of 5)
 weight 		: font-bold, font-semibold
 color 		: text-colorType
 size 		: text-sm,sm,md,lg,xl,2xl, base
+
+
+
+##==============================================##
+##                                              ##
+##                    CONFIG                    ##
+##                                              ##
+##==============================================##
+##------------------- CREATE -------------------##
+// CREATES tailwind.config.js and postcss.config.js AT ROOT OF PROJECT
+npx tailwindcss init -p;
+
+
+##------------------- SAMPLE -------------------##
+const colors = require('tailwindcss/colors')
+module.exports = {
+	purge: [],
+	darkMode: false, // false, 'media', 'class'
+	theme: {
+		colors: {
+			gray: colors.coolGray,
+			blue: colors.lightBlue,
+			red: colors.rose,
+			pink: colors.fuchsia,
+		},
+		fontFamily: {
+			sans: ['Graphik', 'sans-serif'],
+			serif: ['Merriweather', 'serif'],
+		},
+		extend: {
+			spacing: {
+				'128': '32rem',
+				'144': '36rem',
+			},
+			borderRadius: {
+				'4xl': '2rem',
+			}
+		}
+	},
+	variants: {
+		extend: {
+			borderColor: ['focus-visible'],
+			opacity: ['disabled'],
+		}
+	}
+}
+
+
+##------------------- THEME --------------------##
+// COLOR
+colors:{
+	colorType: val,	// text-colorType
+	colorCat:{
+		colorVal1	// text-colorCat-colorVal1
+		colorVal2
+	}
+}
+border-colorType
+bg-colorType
+text-colorType
+
+// FONT FAMILY
+fontFamily:{
+	sans: ['Graphik', 'sans-serif'],
+	serif: ['Merriweather', 'serif']
+}
+
+// SCREENS
+screens:{
+	sm
+	md
+	lg
+	xl
+	2xl
+}
+
+// SPACING
+spacing:{
+	px: 1px
+	0
+	0.5
+	1
+	...
+}
+PLUGINS: padding, margin, width, height, maxHeight, gap, inset, space, translate
+
+
+// COREPLUGINS
+borderRadius:{
+	none: '0',			-none
+	DEFAULT: '.25rem',	
+	sm: '.125rem'		-sm
+}
+rounded-borderRadiusType
+
+// REFERENCING OTHER VALUES
+fill: theme=> theme('colors')
+fill: theme=>({
+	gray: theme('colors.gray')
+})
+
+// REFERENCING DEFAULT THEME
+const defaultTheme = require('tailwindcss/defaultTheme')
+defaultTheme.fontFamily.sans
+
+// DISABLING CORE PLUGIN (NOT IN THEME)
+corePlugins:{
+	pluginName: false
+	
+}
+
+
+##---------------- BREAKPOINTS -----------------##
+theme.screens as min-width
+
+// THIS WILL REPLACE ALL BREAKPOINTS
+screens:{
+	3xl: '1600px'
+}
+// THIS WILL ADD ON TOP OF DEFAULT ONES
+extend:{
+	screens:{
+		'3xl': '1600px'
+	}
+}
+// THIS WILL OVERRIDE CERTAIN DEFAULT BREAKPOINTS
+screens:{
+	'xs': 'newpx',
+	...defaultTheme.screens
+
+// MAX WIDTH
+screens:{
+	2xl:{
+		'min': '1500px'
+		'max': '1535px'
+	}
+}
+
+// MULTI-RANGE
+screens:{
+	md:[
+		{
+			min,
+			max
+		},
+		{
+			min,
+			max
+		}
+	]
+}
+
+// CUSTOM: USE raw
+screens:{
+	'portrait': {
+		'raw': '(orientation: portrait)'
+	}
+}
+
+
+##------------------- COLORS -------------------##
+// BASE
+blue-gray
+cool-gray
+gray
+true-gray
+warm-gray
+red
+orange
+amber
+yellow
+lime
+green
+emerald
+teal
+cyan
+sky
+blue
+indigo
+violet
+purple
+fuchsia
+pink
+rose
+
+
+// VALS
+50
+100
+200
+300
+400
+500
+600
+700
+800
+900
+
+// SYNTAX: HEX CODE
+
+// EXTEND: DEEPLY MERGED
+extend:{
+	colors:{
+		'regal-blue': '#243c5a'
+	}
+}
+
+// DELETE SELECTED ONE(S)
+colors:{
+	include all except those
+}
+
+
+##------------------ SPACING -------------------##
+// CUSTOM
+theme.spacing
+
+// EXTEND
+theme.extend.spacing
+
+// DEFAULT
+0	0px			0px
+px	1px			1px
+0.5	0.125rem	2px
+1	0.25rem		4px
+1.5	0.375rem	6px
+2	0.5rem		8px
+2.5	0.625rem	10px
+3	0.75rem		12px
+3.5	0.875rem	14px
+4	1rem		16px
+5	1.25rem		20px
+6	1.5rem		24px
+7	1.75rem		28px
+8	2rem		32px
+9	2.25rem		36px
+10	2.5rem		40px
+11	2.75rem		44px
+12	3rem		48px
+14	3.5rem		56px
+16	4rem		64px
+20	5rem		80px
+24	6rem		96px
+28	7rem		112px
+32	8rem		128px
+36	9rem		144px
+40	10rem		160px
+44	11rem		176px
+48	12rem		192px
+52	13rem		208px
+56	14rem		224px
+60	15rem		240px
+64	16rem		256px
+72	18rem		288px
+80	20rem		320px
+96	24rem		384px
+
+
+##------------------ VARIANTS ------------------##
+variants:{
+	extend:{
+		// THE ORDER MATTERS
+		pluginName: [variantName(s)]
+	}
+}
+
+// ORDER MATTERS
+
+// ALL
+responsive		sm, md, lg, xl, etc (screens) not impacted by order
+dark			dark mode, does not stack with motion-xx
+motion-safe 	preferse-reduced-motion: no-preference
+motion-reduce 	preferse-reduced-motion: reduce
+first 			first-child
+last 			last-child
+even 			even-child
+odd 			odd-child
+visited
+checked
+group-hover
+group-focus
+focus-within
+hover
+focus
+focus-visible
+active
+disabled
+
+// DEFAULT
+add DEFAULT for non-prefixed version of utility
+variants:{
+	backgroundColor: ['DEFAULT', 'hover', 'focus']
+}
+
+// CUSTOM VARIANTS
+variants: {
+	backgroundColor: ['responsive', 'hover', 'focus', 'group-disabled'],
+},
+plugins: [
+	require('tailwindcss-interaction-variants'),
+],
+variantOrder:[
+	...,
+	'group-disabled',
+	...
+]
+
+// DEFAULT CONFIG:
+	accessibility				: ['responsive', 'focus-within', 'focus'],
+	alignContent				: ['responsive'],
+	alignItems					: ['responsive'],
+	alignSelf					: ['responsive'],
+	animation					: ['responsive'],
+	appearance					: ['responsive'],
+	backdropBlur				: ['responsive'],
+	backdropBrightness			: ['responsive'],
+	backdropContrast			: ['responsive'],
+	backdropFilter				: ['responsive'],
+	backdropGrayscale			: ['responsive'],
+	backdropHueRotate			: ['responsive'],
+	backdropInvert				: ['responsive'],
+	backdropOpacity				: ['responsive'],
+	backdropSaturate			: ['responsive'],
+	backdropSepia				: ['responsive'],
+	backgroundAttachment		: ['responsive'],
+	backgroundBlendMode			: ['responsive'],
+	backgroundClip				: ['responsive'],
+	backgroundColor				: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
+	backgroundImage				: ['responsive'],
+	backgroundOpacity			: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
+	backgroundPosition			: ['responsive'],
+	backgroundRepeat			: ['responsive'],
+	backgroundSize				: ['responsive'],
+	backgroundOrigin			: ['responsive'],
+	blur						: ['responsive'],
+	borderCollapse				: ['responsive'],
+	borderColor					: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
+	borderOpacity				: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
+	borderRadius				: ['responsive'],
+	borderStyle					: ['responsive'],
+	borderWidth					: ['responsive'],
+	boxDecorationBreak			: ['responsive'],
+	boxShadow					: ['responsive', 'group-hover', 'focus-within', 'hover', 'focus'],
+	boxSizing					: ['responsive'],
+	brightness					: ['responsive'],
+	clear						: ['responsive'],
+	container					: ['responsive'],
+	contrast					: ['responsive'],
+	cursor						: ['responsive'],
+	display						: ['responsive'],
+	divideColor					: ['responsive', 'dark'],
+	divideOpacity				: ['responsive', 'dark'],
+	divideStyle					: ['responsive'],
+	divideWidth					: ['responsive'],
+	dropShadow					: ['responsive'],
+	fill						: ['responsive'],
+	filter						: ['responsive'],
+	flex						: ['responsive'],
+	flexDirection				: ['responsive'],
+	flexGrow					: ['responsive'],
+	flexShrink					: ['responsive'],
+	flexWrap					: ['responsive'],
+	float						: ['responsive'],
+	fontFamily					: ['responsive'],
+	fontSize					: ['responsive'],
+	fontSmoothing				: ['responsive'],
+	fontStyle					: ['responsive'],
+	fontVariantNumeric			: ['responsive'],
+	fontWeight					: ['responsive'],
+	gap					: ['responsive'],
+	gradientColorStops			: ['responsive', 'dark', 'hover', 'focus'],
+	grayscale					: ['responsive'],
+	gridAutoColumns				: ['responsive'],
+	gridAutoFlow				: ['responsive'],
+	gridAutoRows				: ['responsive'],
+	gridColumn					: ['responsive'],
+	gridColumnEnd				: ['responsive'],
+	gridColumnStart				: ['responsive'],
+	gridRow						: ['responsive'],
+	gridRowEnd					: ['responsive'],
+	gridRowStart				: ['responsive'],
+	gridTemplateColumns			: ['responsive'],
+	gridTemplateRows			: ['responsive'],
+	height						: ['responsive'],
+	hueRotate					: ['responsive'],
+	inset						: ['responsive'],
+	invert						: ['responsive'],
+	isolation					: ['responsive'],
+	justifyContent				: ['responsive'],
+	justifyItems				: ['responsive'],
+	justifySelf					: ['responsive'],
+	letterSpacing				: ['responsive'],
+	lineHeight					: ['responsive'],
+	listStylePosition			: ['responsive'],
+	listStyleType				: ['responsive'],
+	margin						: ['responsive'],
+	maxHeight					: ['responsive'],
+	maxWidth					: ['responsive'],
+	minHeight					: ['responsive'],
+	minWidth					: ['responsive'],
+	mixBlendMode				: ['responsive'],
+	objectFit					: ['responsive'],
+	objectPosition				: ['responsive'],
+	opacity						: ['responsive', 'group-hover', 'focus-within', 'hover', 'focus'],
+	order						: ['responsive'],
+	outline						: ['responsive', 'focus-within', 'focus'],
+	overflow					: ['responsive'],
+	overscrollBehavior			: ['responsive'],
+	padding						: ['responsive'],
+	placeContent				: ['responsive'],
+	placeItems					: ['responsive'],
+	placeSelf					: ['responsive'],
+	placeholderColor			: ['responsive', 'dark', 'focus'],
+	placeholderOpacity			: ['responsive', 'dark', 'focus'],
+	pointerEvents				: ['responsive'],
+	position					: ['responsive'],
+	resize						: ['responsive'],
+	ringColor					: ['responsive', 'dark', 'focus-within', 'focus'],
+	ringOffsetColor				: ['responsive', 'dark', 'focus-within', 'focus'],
+	ringOffsetWidth				: ['responsive', 'focus-within', 'focus'],
+	ringOpacity					: ['responsive', 'dark', 'focus-within', 'focus'],
+	ringWidth					: ['responsive', 'focus-within', 'focus'],
+	rotate						: ['responsive', 'hover', 'focus'],
+	saturate					: ['responsive'],
+	scale						: ['responsive', 'hover', 'focus'],
+	sepia						: ['responsive'],
+	skew						: ['responsive', 'hover', 'focus'],
+	space						: ['responsive'],
+	stroke						: ['responsive'],
+	strokeWidth					: ['responsive'],
+	tableLayout					: ['responsive'],
+	textAlign					: ['responsive'],
+	textColor					: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
+	textDecoration				: ['responsive', 'group-hover', 'focus-within', 'hover', 'focus'],
+	textOpacity					: ['responsive', 'dark', 'group-hover', 'focus-within', 'hover', 'focus'],
+	textOverflow				: ['responsive'],
+	textTransform				: ['responsive'],
+	transform					: ['responsive'],
+	transformOrigin				: ['responsive'],
+	transitionDelay				: ['responsive'],
+	transitionDuration			: ['responsive'],
+	transitionProperty			: ['responsive'],
+	transitionTimingFunction	: ['responsive'],
+	translate					: ['responsive', 'hover', 'focus'],
+	userSelect					: ['responsive'],
+	verticalAlign				: ['responsive'],
+	visibility					: ['responsive'],
+	whitespace					: ['responsive'],
+	width						: ['responsive'],
+	wordBreak					: ['responsive'],
+	zIndex						: ['responsive', 'focus-within', 'focus']
+
+
+
+##==============================================##
+##                                              ##
+##                   PLUGINS                    ##
+##                                              ##
+##==============================================##
+##---------------- THIRD PARTY -----------------##
+plugins: [
+	require('@tailwindcss/forms'),
+	require('@tailwindcss/aspect-ratio'),
+	require('@tailwindcss/typography'),
+	require('tailwindcss-children'),
+]
+
+
+##------------------ OFFICIAL ------------------##
+// OFFICIAL
+require('@tailwindcss/typography'),		// prose CLASS FOR MARKDOWN / CMS DB
+require('@tailwindcss/forms'),			// FORM ELEMENTS select, input
+require('@tailwindcss/line-clamp'),		// TRUNCATE TEXT TO FIXED NUMBER OF LINES: line-clamp-n
+require('@tailwindcss/aspect-ratio'),	// aspect-w-n aspect-h-n
+
+
+##------------------- CUSTOM -------------------##
+const plugin = require("tailwindcss/plugin");
+plugins:[
+	plugin(function({
+		addUtilities,	// NEW UTILITY STYLES (FN)
+		addComponents,	// NEW COMPONENT STYLES (FN)
+		addBase,		// NEW BASE STYLES (FN)
+		addVariant,		// REGISTER CUSTOM VARIANTS (FN)
+		e,				// ESCAPE STRINGS IN CLASS NAMES (FN)
+		prefix,			// USER CONFIGURED PREFIX (FN)
+		theme,			// LOOK UP THEME CONFIG (FN)
+		variants,		// LOOK UP VARIANTS CONFIG (FN)
+		config, 		// LOOKUP VALUES IN CONFIG (FN)
+		postcss,		// LOW LEVEL MANIPULATION WITH POSTCSS
+
+	}) {
+		// Add your custom styles here
+	}),
+];
+
+
+##---------------- addUtilities ----------------##
+// BASIC
+const newUtilities = {
+	className1:{
+		cssField1: cssVal1
+	},
+	className2:{
+		cssField2: cssVal2
+	}
+}
+addUtilities(newUtilities, {
+	// CONFLICT WITH MAIN important AND prefix
+	respectPrefix: true / false,
+	respectImportant: true / false,
+
+	// VARIANTS
+	variants: ['responsive', 'hover']
+});
+
+// ONLY VARIANTS
+addUtilities(newUtilities, ['responsive', 'hover']);
+
+// USER DEFINED
+addUtilities(newUtilities,variants('customPlugin'))
+
+
+##--------------- addComponents ----------------##
+const buttons = {
+	'.btn': {
+		padding: '.5rem 1rem',
+		borderRadius: '.25rem',
+		fontWeight: '600',
+	},
+	'.btn-blue': {
+		backgroundColor: '#3490dc',
+	color: '#fff',
+		'&:hover': {
+			backgroundColor: '#2779bd'
+		},
+	},
+	'.btn-red': {
+		backgroundColor: '#e3342f',
+	color: '#fff',
+		'&:hover': {
+			backgroundColor: '#cc1f1a'
+		},
+	},
+}
+
+// NOT AFFECTED BY MAIN important
+// RESPECTS prefix BY DEFAULT
+addComponents(buttons, {
+	respectPrefix: false,
+	variants: ['hover']
+})
+
+// ONLY VARIANTS
+addUtilities(newUtilities, ['responsive', 'hover']);
+
+// USER DEFINED
+addUtilities(newUtilities, variants('customPlugin'))
+
+
+##------------------ addBase -------------------##
+addBase({
+	'h1': { fontSize: theme('fontSize.2xl') },
+	'h2': { fontSize: theme('fontSize.xl') },
+	'h3': { fontSize: theme('fontSize.lg') },
+})
+
+
+##--------------------- e ----------------------##
+// ESCAPE CLASS NAMES
+theme: {
+	rotate: {
+		'1/4': '90deg',
+		'1/2': '180deg',
+		'3/4': '270deg',
+	}
+}
+const rotateUtilities = _.map(theme('rotate'), (value, key) => {
+	return {
+		[`.${e(`rotate-${key}`)}`]: {
+			transform: `rotate(${value})`
+		}
+	}
+})
+addUtilities(rotateUtilities)
+
+// OUTPUT: 
+.rotate-1\/4 {
+	transform: rotate(90deg);
+}
+.rotate-1\/2 {
+	transform: rotate(180deg);
+}
+.rotate-3\/4 {
+	transform: rotate(270deg);
+}
+
+
+##------------------- prefix -------------------##
+// MANUALLY PREFIX SELECTORS
+plugin(function({ addComponents, prefix }) {
+	addComponents({
+		[`.existing-class > ${prefix('.new-class')}`]: {
+			backgroundColor: '#fff',
+		}
+	})
+});
+
+
+##---------------- REFERENCING -----------------##
+const screens = theme('screens', {})
+
+const mediaQueries = _.map(screens, width => {
+	return {
+		[`@media (min-width: ${width})`]: {
+			'.container': {
+				'max-width': width,
+			},
+		},
+	}
+})
+addComponents([
+	{ '.container': { width: '100%' } },
+	...mediaQueries,
+])
+
+// DO NOT USE THIS TO REFERENCE USER'S variants CONFIG
+
+
+##----------------- addVariant -----------------##
+
+addVariant('disabled', ({ modifySelectors, separator }) => {
+	modifySelectors(({ className }) => {
+		return `.${e(`disabled${separator}${className}`)}:disabled`
+	});
+})
+
+
+##==============================================##
+##                                              ##
+##               EXTERNAL CONFIG                ##
+##                                              ##
+##==============================================##
+##------------------- PRESET -------------------##
+plugins: [
+	require('@mypackage/base-tailwind-config')
+]
+
+// CREATION: EXACTLY SAME AS tailwind.config.js
+
+// ADD
+presets:[
+	require('./tailwind-preset-file.js')
+]
+
+// MERGING OF CONFIG:
+Replaced	: purge, darkMode, prefix, important, variantOrder, separator
+Theme 		: Merged shallowly with top-level keys except extend
+Variants 	: Merged shallowly with top-level keys except extend
+Presets		: All merged (Union)
+Plugins 	: All merged (Union), cannot be disabled after added by preset
+Cor Plugins	: As an object, merged accross config. As an array
+
+// DISABLING DEFAULT CONFIG
+presets: []
+
+
+##------------------- PREFIX -------------------##
+prefix: 'myPrefix-'
+// ADDS PREFIX TO EVERY CLASS
+text-dark > myPrefix-text-dark
+
+// DOES NOT AFFECT VARIANT
+hover:text-dark > hover:myPrefix-text-dark
+
+
+##----------------- IMPORTANT ------------------##
+important: true / false / selector (#app, .class)
+
+
+##----------------- SEPARATOR ------------------##
+// USES _ INSTEAD OF : FOR VARIANTS
+separator: '_'
+
+
+##--------------- VARIANT ORDER ----------------##
+variantOrder: ['first', 'last', 'odd', ...]
+
+
+##---------------- CORE PLUGINS ----------------##
+corePlugins:{
+	// DISABLED. ALL ENABLED BY DEFAULT
+	pluginName: false
+}
+
+// ALL PLUGINS
+	preflight				: base / reset styles
+	container				: container component
+	accessibility			: sr-only / not-sr-only
+	alignContent			: content-end
+	alignItems				: items-center
+	alignSelf				: self-end
+	animation
+	appearance				: appearance-none
+	backdropBlur
+	backdropBrightness
+	backdropContrast
+	backdropFilter
+	backdropGrayscale
+	backdropHueRotate
+	backdropInvert
+	backdropOpacity
+	backdropSaturate
+	backdropSepia
+	backgroundAttachment	: bg-local
+	backgroundBlendMode		: bg-blend-color-burn
+	backgroundClip			: bg-clip-padding
+	backgroundImage
+	backgrounOpacity 		: bg-opacity-25
+	backgroundOrigin		: bg-origin-padding
+	backgrounPosition
+	backgroundRepeat		: bg-repeat-y / x
+	backgroundSize
+	blur
+	borderCollapse			: border-collapse
+	borderColor
+	borderOpacity			: border-opacity-25
+	borderWidth
+	boxDecorationBreak		: decoration-sliace
+	boxShadow
+	boxSizing				: box-border
+	brightness
+	caretColor
+	clear					: clear-right
+	content
+	contrast
+	cursor
+	display					: table-column-group, inline-block, block, hidden
+	divideColor				: divide-colorType
+	divideOpacity
+	divideStyle				: divide-dotted
+	divideWidth				: divide-x-2
+	dropShadow				: drop-shadow-lg
+	fill
+	filter
+	flex
+	flexDirection			: flex-row, flex-row-rever, flex-col, flex-col-reverse
+	flexGrow
+	flexShrink
+	flexWrap				: flex-wrap, flex-wrap-reverse
+	float					: float-left, float-right
+	fontFamily
+	fontSize
+	fontSmoothing			: antialiased
+	fontStyle				: italic
+	fontVariantNumeric		: lining-nums
+	fontWeight
+	gap
+	gradientColorStops
+	grayscale
+	gridAutoColumns
+	gridAutoFlow			: grid-flow-col
+	gridAutoRows
+	gridColumn
+	gridColumnEnd
+	gridColumnStart
+	gridRow
+	gridRowEnd
+	gridRowStart
+	gridTemplateColumns
+	gridTemplateRows
+	height
+	hueRotate
+	inset
+	invert
+	isolation				: isolate
+	justifyContent			: justify-center
+	justifyItems			: justify-items-end
+	justifySelf				: justify--self-end
+	letterSpacing
+	lineHeight
+	listStylePosition		: list-inside
+	listStyleType
+	margin
+	maxHeight
+	maxWidth
+	minHeight
+	minWidth
+	mixBlendMode			: mix-blend-color-burn
+	objectFit				: object-fill
+	objectPosition
+	opacity
+	order
+	outline
+	overflow				: overflow-y-auto
+	overscrollBehavior		: overscroll-y-contain
+	padding
+	placeContent			: place-content-between
+	placeholderColor		: placeholder-colorType
+	placeholderOpacity		: placeholder-opacity-25
+	placeItems				: place-items-end
+	placeSelf				: place-self-end
+	pointerEvents			: pointer-events-none
+	position 				: relative, absolute
+	resize					: resize-x / y
+	ringColor
+	ringOffsetColor
+	ringOffsetWidth
+	ringOpacity
+	ringWidth
+	rotate
+	saturate
+	scale
+	sepia
+	skew
+	space					: space-x-4
+	stroke
+	strokeWidth
+	tableLayout				: table-auto
+	textAlign				: text-center
+	textColor
+	textDecoration			: line-through
+	textOpacity
+	textOverflow			: overflow-ellipsis
+	textTransform			: lowercase
+	transform
+	transformOrigin
+	transitionDelay
+	transitionDuration
+	transitionProperty
+	transitionTimingFunction
+	translate
+	userSelect				: select-text
+	verticalAlign			: align-middle
+	visibility				: visible
+	whitespace				: whitespace-pre
+	width
+	workBreak				: break-words
+	zIndex
+
+
+##--------------- JS REFERENCING ---------------##
+import resolveConfig from 'tailwindcss/resolveConfig'
+import tailwindConfig from './tailwind.config.js'
+
+const fullConfig = resolveConfig(tailwindConfig)
+fullConfig.theme.width[4]
+fullConfig.theme.screens.md
+fullConfig.theme.boxShadow['2xl']
+
+
+
+##==============================================##
+##                                              ##
+##                   JIT MODE                   ##
+##                                              ##
+##==============================================##
+##-------------------- WHY? --------------------##
+// NO NEED TO WORRY ABOUT HUGE CSS FILE SLOWING DOWN DEVELOPMENT
+
+// SINGULAR VALUES ARE NOW POSSIBLE
+text-[#000000]
+translate-x-[npx] 
+
+
+##------------------ ENABLING ------------------##
+tailwind.config.css:
+plugins:{
+	'@tailwindcss/jit'
+}
+
+OR
+
+mode: 'jit'
+
+
+##--------------- BEST PRACTICES ---------------##
+// STACKABLE VARIANTS
+md:dark:disabled:focus:hover:bg-gray-400
+
+// USE CLASS NAME TO CREATE VALUES
+size === 'lg' ? 'mt-[22px]' : 'mt-[17px]'
+
+// USE INLINE STYLE FOR TRULY DYNAMIC VALUES
+bg-[{{userTheme}}] WILL NOT WORK
+style = "background-color: {{userTheme}}"
+
+// DO NOT USE SPACES IN ARBITRARY VALUES
+h-[calc(1000px-4rem)]
+grid-cols-[1fr,700px,2fr]
+
+// AMBIGUOUS VALUES: USE CASTING
+text-[color:var(--mystery-var)]
+- length
+- color
+- angle
+- list
+
+// IMPORTANT
+!className
+!font-medium
+
+// COLOR-OPACITY SHORTHAND
+bg-red-500/25 = bg-red-500 bg-opacity-25
+
+
+
+
+##==============================================##
+##                                              ##
+##                  PREFLIGHT                   ##
+##                                              ##
+##==============================================##
+##----------------- BASIC INFO -----------------##
+// INJECTED @tailwind base;
+
+// DEFAULT MARGINS ARE REMOVED FOR
+blockquote,
+dl,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+hr,
+figure,
+p,
+pre {
+	margin: 0;
+}
+
+// UNSTYLE HEADINGS
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+	font-size: inherit;
+	font-weight: inherit;
+}
+
+// UNSTYLE LISTS
+ol,
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+// IMAGES ARE BLOCK
+img,
+svg,
+video,
+canvas,
+audio,
+iframe,
+embed,
+object {
+	display: block;
+	vertical-align: middle;
+}
+
+// BORDER STYLE RESET GLOBALLY
+*,
+::before,
+::after {
+	border-width: 0;
+	border-style: solid;
+	border-color: theme('borderColor.default', currentColor);
+}
+
+// DEFAULT BUTTONS OUTLINE
+button:focus {
+	outline: 1px dotted;
+	outline: 5px auto -webkit-focus-ring-color;
+}
+
+
+// ACCESSIBILITY: ADD role = "list" for ul TO BE ANNOUNCED BY VoiceOver
+<ul role = "list">
+</ul>
+
+
+##-------------- EXTEND PREFLIGHT --------------##
+@layer base{
+	h1{
+		@apply text-2xl;
+	}
+}
+
+
+##------------- DISABLE PREFLIGHT --------------##
+corePlugins: {
+	preflight: false,
+}
+
+
+
+
+##==============================================##
+##                                              ##
+##                    LAYOUT                    ##
+##                                              ##
+##==============================================##
+##----------------- CONTAINER ------------------##
+// SETS max-width = min-width OF CURRENT SCREEN
+
+// DOES NOT CENTER AUTOMATICALLY
+// CENTERING: ADD mx-auto
+<div class = "container mx-auto"></div>
+
+// DOES NOT HAVE BUILT-IN HORIZONTAL PADDING
+// ADD PADDING: px-n
+<div class = "container mx-auto px-4"></div>
+
+
+// CUSTOMIZATION: theme.container
+center: true 	// CENTER BY DEFAULT
+padding: '2rem'	// CUSTOMIZATION HORI PADDING
+padding: {
+	DEFAULT: '1rem',
+	sm: '2rem',
+	lg: '4rem',
+	xl: '5rem',
+	'2xl': '6rem',
+}
+
+// NO RESPONSIVENESS: variants.container
+[]
+
+// COMPLETE DISABLING: corePlugins.container
+false
+
+
+##------------ BOX DECORATION BREAK ------------##
+decoration-slice - box-decoration: slice
+decoration-clone - box-decoration: clone
+
+// RENDERS PROPERTIES IN DISTINCT BLOCKS / CONTINUOUS FRAGMENT
+
+// VARIANTS: variants.extend.boxDecorationBreak
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.boxDecorationBreak
+false
+
+
+##----------------- BOX SIZING -----------------##
+box-border	- box-sizing: border-box;		// W/H INCLUDES BORDERS + PADDINGS
+box-content	- box-sizing: content-box;		// EXCLUDES
+
+// VARIANTS: variants.extend.boxSizing
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.boxSizing
+false
+
+
+##------------------ DISPLAY -------------------##
+block 				: vertically stacked
+inline-block		: Hori stacked with full background
+inline 				: Hori stacked with min background
+flex 				: Items takes up full size
+inline-flex 		: Same but on flex container, not items.
+table 				: Behaves like table
+inline-table
+table-caption
+table-cell
+table-column
+table-column-group
+table-header-group
+table-footer-group
+table-row-group
+table-row
+flow-root			: Blocks with own block formatting context (layour occuring, floats interact with other elements)
+grid 				: Creates grids for its children (grid container)
+inline-grid			: Creates grids for its children (multiple side by side <span class = "inline-grid"></span><span class = "inline-grid"></span>)
+contents			: Creates phantom container, its children act like direct children of parent
+list-item
+hidden 				: Display none
+
+// VARIANTS: variants.extend.display
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.display
+false
+
+
+##------------------- FLOAT --------------------##
+float-left
+float-right
+float-none
+
+// VARIANTS: variants.extend.float
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.float
+false
+
+
+##------------------- CLEAR --------------------##
+clear-left
+clear-right
+clear-both
+clear-none
+
+// VARIANTS: variants.extend.clear
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.clear
+false
+
+
+##----------------- ISOLATION ------------------##
+// WHETHER IF ELEMENT SHOULD CREATE NEW STACKING CONTENT
+isolate			- isolation: isolate;
+isolation-auto	- isolation: auto;
+
+// VARIANTS: variants.extend.isolation
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.isolation
+false
+
+
+##----------------- OBJECT FIT -----------------##
+object-contain		: contained width / height wise
+object-cover		: Resize to cover up container width / height wise and clip the longer one
+object-fill			: Stretch to fit container size
+object-none			: Ignores container size
+object-scale-down	: Ori size but scale down if necessary
+
+// VARIANTS: variants.extend.isolation
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.isolation
+false
+
+
+##----------------- OBJECT POS -----------------##
+object-bottom
+object-center
+object-left
+object-left-bottom
+object-left-top
+object-right
+object-right-bottom
+object-right-top
+object-top
+
+// VARIANTS: variants.extend.objectPosition
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.objectPosition
+false
+
+
+##------------------ OVERFLOW ------------------##
+overflow-auto 			: Only show scrollbar when needed
+overflow-hidden 		: Hides overflow
+overflow-visible  		: Makes overflow visible
+overflow-scroll 		: Always shows scrollbar
+overflow-x-auto
+overflow-x-hidden
+overflow-x-visible
+overflow-x-scroll
+overflow-y-auto
+overflow-y-hidden
+overflow-y-visible
+overflow-y-scroll
+
+// VARIANTS: variants.extend.overflow
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.overflow
+false
+
+
+##----------------- OVERSCROLL -----------------##
+overscroll-auto 		: Continue scrolling a parent scroll area
+overscroll-contain 		: Bounce only the element, cannot scroll parent
+overscroll-none 		: No bounce, no parent scroll
+overscroll-x-auto
+overscroll-x-contain
+overscroll-x-none
+overscroll-y-auto
+overscroll-y-contain
+overscroll-y-none
+
+// VARIANTS: variants.extend.overscroll
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.overscroll
+false
+
+
+##------------------ POSITION ------------------##
+static		: Normal document flow. No offsets. Not refernced by absolute children.
+fixed 		: Relative to browser window
+absolute 	: Refers to relative parent. Neighbours act like it doesn't exist
+relative 	: For absolute children
+sticky		: relative until a threshold, then it is fixed until parent is off screen.
+
+// VARIANTS: variants.extend.position
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.position
+false
+
+
+##-------------------- TRBL --------------------##
+inset-0		: top, right, bottom, left, x, y 0px
+0.5,1,1.5,2,2.5,3,3.5,4,5,6,7,8,9,10,11,12,14,16,20,24,28,32,36,40,44,48,52,56,60,64,72,80,96,auto,1/2,1/3,2/3,1/4,3/5,full
+
+// VARIANTS: variants.extend.inset
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.inset
+false
+
+
+##----------------- VISIBILITY -----------------##
+visible
+invisible 	: Invisible but still takes space unlike hidden
+
+// VARIANTS: variants.extend.visibility
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.visibility
+false
+
+
+##------------------ Z-INDEX -------------------##
+z-0
+z-10
+z-20
+z-30
+z-40
+z-50
+z-auto
+
+// ALLOWS NEGATIVE theme.extend.zIndex
+{
+	'-10': '-10'
+}
+
+// VARIANTS: variants.extend.zIndex
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.zIndex
+false
+
+
+
+##==============================================##
+##                                              ##
+##               FLEXBOX AND GRID               ##
+##                                              ##
+##==============================================##
+##--------------- FLEX DIRECTION ---------------##
+flex-row
+flex-row-reverse
+flex-col
+flex-col-reverse
+
+// VARIANTS: variants.extend.flexDirection
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.flexDirection
+false
+
+
+##----------------- FLEX WRAP ------------------##
+flex-wrap 			: Normally wrap
+flex-wrap-reverse	: Flexes in reverse direction (rtl, btt)
+flex-nowrap 		: Overflows
+
+
+// VARIANTS: variants.extend.flexWrap
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.flexWrap
+false
+
+
+##-------------------- FLEX --------------------##
+flex-1			: 1 1 0%   - Shrink / grow, ignores initial size (same size regardless)
+flex-auto		: 1 1 auto - Shrink / grow with initial size taken into account
+flex-initial	: 0 1 auto - Shrink not grow
+flex-none		: none     - No grow / shrink
+
+
+// NEW VALS theme.extend.flex
+{
+	'2': '2 2 0%'
+}
+
+// VARIANTS: variants.extend.flex
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.flex
+false
+
+
+##----------------- FLEX GROW ------------------##
+flex-grow 		: Fills any available space
+flex-grow-0 	: Don't grow
+
+
+// CUSTOMIZATION theme.flexGrow
+{
+	'DEFAULT': 2
+}
+
+// VARIANTS: variants.extend.flexGrow
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.flexGrow
+false
+
+
+##---------------- FLEX SHRINK -----------------##
+flex-shrink 	: Shrinks item if needed (only when parent and other items have shrunk to minimum width)
+flex-shrink-0	: Don't shrink
+
+// VARIANTS: variants.extend.flexShrink
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.flexShrink
+false
+
+
+##------------------- ORDER --------------------##
+// FOR flex / grid ITEMS
+order-1			1
+order-2			2
+order-3			3
+order-4			4
+order-5			5
+order-6			6
+order-7			7
+order-8			8
+order-9			9
+order-10		10
+order-11		11
+order-12		12
+order-first		-9999
+order-last		9999
+order-none		0
+
+
+// CUSTOMIZATION theme.order
+{
+	normal: 0
+}
+
+// VARIANTS: variants.extend.order
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.order
+false
+
+
+##----------- GRID TEMPLATE COLUMNS ------------##
+// n EQUALLY SIZED COLS
+grid-cols-1			repeat(1, minmax(0, 1fr));
+grid-cols-2			repeat(2, minmax(0, 1fr));
+grid-cols-3			repeat(3, minmax(0, 1fr));
+grid-cols-4			repeat(4, minmax(0, 1fr));
+grid-cols-5			repeat(5, minmax(0, 1fr));
+grid-cols-6			repeat(6, minmax(0, 1fr));
+grid-cols-7			repeat(7, minmax(0, 1fr));
+grid-cols-8			repeat(8, minmax(0, 1fr));
+grid-cols-9			repeat(9, minmax(0, 1fr));
+grid-cols-10		repeat(10, minmax(0, 1fr));
+grid-cols-11		repeat(11, minmax(0, 1fr));
+grid-cols-12		repeat(12, minmax(0, 1fr));
+grid-cols-none		none
+
+
+// CUSTOMIZATION theme.extend.gridTemplateColumns
+{
+	'16': 'repeat(16, minmax(0, 1fr))',
+	'footer': '200px minmax(900px, 1fr) 100px'
+}
+
+// VARIANTS: variants.extend.gridTemplateColumns
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.gridTemplateColumns
+false
+
+
+##---------- GRID COLUMN START / END -----------##
+col-span-n 		- 1 to 12, auto
+col-start-n		- 1 to 13, auto
+col-end-n		- 1 to 13, auto
+
+
+// CUSTOMIZATION theme.extend
+gridColumn
+{
+	'span-16': 'span 16 / span 16',
+}
+gridColumnStart / gridColumnEnd: {
+	'13': '13',
+	'14': '14',
+	'15': '15',
+	'16': '16',
+	'17': '17',
+}
+
+// VARIANTS: variants.extend.gridColumn
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.gridColumn / gridColumnStart / gridColumnEnd
+false
+
+
+
+##------------- GRID TEMPLATE ROWS -------------##
+// n EQUALLY SIZED COLS
+grid-rows-1			repeat(1, minmax(0, 1fr));
+grid-rows-2			repeat(2, minmax(0, 1fr));
+grid-rows-3			repeat(3, minmax(0, 1fr));
+grid-rows-4			repeat(4, minmax(0, 1fr));
+grid-rows-5			repeat(5, minmax(0, 1fr));
+grid-rows-6			repeat(6, minmax(0, 1fr));
+grid-rows-7			repeat(7, minmax(0, 1fr));
+grid-rows-8			repeat(8, minmax(0, 1fr));
+grid-rows-9			repeat(9, minmax(0, 1fr));
+grid-rows-10		repeat(10, minmax(0, 1fr));
+grid-rows-11		repeat(11, minmax(0, 1fr));
+grid-rows-12		repeat(12, minmax(0, 1fr));
+grid-rows-none		none
+
+
+// CUSTOMIZATION theme.extend.gridTemplateRows
+{
+	'16': 'repeat(16, minmax(0, 1fr))',
+	'layout': '200px minmax(900px, 1fr) 100px'
+}
+
+// VARIANTS: variants.extend.gridTemplateRows
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.gridTemplateRows
+false
+
+
+##----------- GRID ROWS START / END ------------##
+row-span-n 		- 1 to 12, auto
+row-start-n		- 1 to 13, auto
+row-end-n		- 1 to 13, auto
+
+
+// CUSTOMIZATION theme.extend
+gridRow
+{
+	'span-16': 'span 16 / span 16',
+}
+gridRowStart / gridRowEnd: {
+	'13': '13',
+	'14': '14',
+	'15': '15',
+	'16': '16',
+	'17': '17',
+}
+
+// VARIANTS: variants.extend.gridRow
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.gridRow / gridRowStart / gridRowEnd
+false
+
+
+##--------------- GRID AUTO FLOW ---------------##
+grid-flow-row 		: Row sequence (ltr)
+grid-flow-col 		: Column sequence (ttb)
+grid-flow-row-dense : Removes empty row
+grid-flow-col-dense : Removes empty col
+
+// VARIANTS: variants.extend.gridAutoFlow
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.gridAutoFlow
+false
+
+
+##--------------- GRID AUTO COLS ---------------##
+auto-cols-auto
+auto-cols-min
+auto-cols-max
+auto-cols-fr
+
+// CUSTOMIZATION theme.extend
+gridAutoColumns
+{
+	'2fr': 'minmax(0, 2fr)',
+}
+
+// VARIANTS: variants.extend.gridAutoColumns
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.gridAutoColumns
+false
+
+
+##--------------- GRID AUTO ROWS ---------------##
+auto-rows-auto
+auto-rows-min
+auto-rows-max
+auto-rows-fr
+
+// CUSTOMIZATION theme.extend
+gridAutoRows
+{
+	'2fr': 'minmax(0, 2fr)',
+}
+
+// VARIANTS: variants.extend.gridAutoRows
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.gridAutoRows
+false
+
+
+##-------------------- GAP ---------------------##
+// GAPSS BETWEEN GRID / FLEXBOX ITEMS
+gap-n
+gap-x-n
+gap-y-n
+
+n: 0, px, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 72, 80, 96
+
+// CUSTOMIZATION theme.extend
+gap
+{
+	'2fr': 'minmax(0, 2fr)',
+}
+
+// VARIANTS: variants.extend.gap
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.gap
+false
+
+
+##-------------- JUSTIFY CONTENT ---------------##
+// HOW FLEX / GRID ITEMS ARE POSITION ALONG MAIN AXIS
+justify-start	: start
+justify-end 	: end
+justify-center	: center
+justify-between : Equal space in between
+justify-around 	: Equal space on each side of item (including first and last)
+justify-evenly	: Equal space on each side of item and accounting for doubling of space in between two items.
+
+// VARIANTS: variants.extend.justifyContent
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.justifyContent
+false
+
+
+##--------------- JUSTIFY ITEMS ----------------##
+// HOW GRID ITEMS (ITS CHILDREN) ALIGN ALONG INLINE AXIS
+justify-items-start
+justify-items-center
+justify-items-end
+justify-items-stretch
+
+// VARIANTS: variants.extend.justifyItems
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.justifyItems
+false
+
+
+##---------------- JUSTIFY SELF ----------------##
+// HOW GRID ITEMS (ITSELF) ALIGN ALONG INLINE AXIS
+justify-self-auto 		: Based on justify-items
+justify-self-start		: start
+justify-self-center		: center
+justify-self-end 		: end
+justify-self-stretch	: Fill grid area in inline axis
+
+// VARIANTS: variants.extend.justifyItems
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.justifyItems
+false
+
+
+##--------------- ALIGN CONTENT ----------------##
+// HOW ALL ROWS ARE POSITIONED IN MULTI-ROW FLEX / GRID CONTAINERS (ITS CHILDREN)
+content-start		: Start of cross axis
+content-center		: Center of cross axis
+content-end			: End of cross axis
+content-between 	: Same space between lines
+content-around		: Equal amount of space around each line
+content-evenly		: Equal amount of space around each line without doubling in between two lines
+
+// VARIANTS: variants.extend.alignContent
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.alignContent
+false
+
+
+##---------------- ALIGN ITEMS -----------------##
+// HOW EACH ROW IS POSITIONED IN MULTI-ROW FLEX / GRID CONTAINERS (ITS CHILDREN) CROSS AXIS
+items-start		: Start of cross axis
+items-center	: Center
+items-end		: End
+items-baseline	: Bottom / right (baseline) aligns to cross axis
+items-stretch	: Stretch item to take up cross axis
+
+// VARIANTS: variants.extend.alignItems
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.alignItems
+false
+
+
+##----------------- ALIGN SELF -----------------##
+// HOW EACH ROW IS POSITIONED IN MULTI-ROW FLEX / GRID CONTAINERS (ITSELF) CROSS AXIS
+self-auto		: Follows align-items
+self-start		: Start of cross axis
+self-center		: Center
+self-end		: End
+self-baseline	: Bottom / right (baseline) aligns to cross axis
+self-stretch	: Stretch item to take up cross axis
+
+// VARIANTS: variants.extend.alignSelf
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.alignSelf
+false
+
+
+##--------------- PLACE CONTENT ----------------##
+// JUSTIFY + ALIGN CONTENT
+place-content-start		: Start
+place-content-center	: Center
+place-content-end		: End
+place-content-between	: Equal space between each row (exclude first and last)
+place-content-around	: Eaqual amount of space between each row (include first and last)
+place-content-evenly	: Evenly spaced on block axis
+place-content-stretch 	: Stretch and fill up area
+
+// VARIANTS: variants.extend.placeContent
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.placeContent
+false
+
+
+##---------------- PLACE ITEMS -----------------##
+// JUSTIFY + ALIGN ITEMS ON BOTH AXIS (CHILDREN)
+place-items-start	: Start
+place-items-center	: Center
+place-items-end		: End
+place-items-stretch : Stretch and fill up area
+
+// VARIANTS: variants.extend.placeItems
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.placeItems
+false
+
+
+##----------------- PLACE SELF -----------------##
+// JUSTIFY + ALIGN ITEMS ON BOTH AXIS (ITSELF)
+place-self-start	: Start
+place-self-center	: Center
+place-self-end		: End
+place-self-stretch 	: Stretch and fill up area
+
+// VARIANTS: variants.extend.placeSelf
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.placeSelf
+false
+
+
+
+##==============================================##
+##                                              ##
+##                   SPACINGS                   ##
+##                                              ##
+##==============================================##
+##------------------ PADDING -------------------##
+p-n
+px-n
+py-n
+pt-n
+pr-n
+pb-n
+pl-n
+0, px, 0.5, 1, 1.5, 2, 2.5, 3.5, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 72, 80, 96
+
+// SCALING
+// TO CUSTOMIZE ALL PADDING, MARGIN, HEIGHT, WIDTH: theme.spacing
+sm: '8px',
+md: '16px',
+lg: '24px',
+xl: '48px',
+
+// ONLY PADDING: theme.padding
+
+// VARIANTS: variants.extend.padding
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.padding
+false
+
+##------------------- MARGIN -------------------##
+m-n
+-m-n
+mx-n
+-mx-n
+my-n
+-my-n
+mt-n
+-mt-n
+mr-n
+-mr-n
+mb-n
+-mb-n
+ml-n
+-ml-n
+
+// ONLY MARGIN: theme.margin
+
+// VARIANTS: variants.extend.margin
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.margin
+false
+
+
+##--------------- SPACE BETWEEN ----------------##
+// SPACE BETWEEN CHILD ELEMENTS
+space-x-n
+-space-x-n
+space-y-n
+-space-y-n
+
+// ONLY SPACE: theme.space
+
+// VARIANTS: variants.extend.space
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.space
+false
+
+
+##------------------- WIDTH --------------------##
+w-n
+w-frac
+w-full		: 100%
+w-screen	: 100vw;
+w-min 		: min-content
+w-max 		: max-content
+
+n: same with padding
+frac: 1/2, 1/3, 2/3, 1/4, 3/4, 1/5, 2/5, 3/5, 4/5, 1/6, 5/6, 1/12, 5/12, 7/12, 11/12
+
+// CUSTOMIZING: theme.extend
+spacing
+{
+	'72': '18rem'
+}
+width
+{
+	'1/7': '14.2857143%'
+}
+
+// VARIANTS: variants.extend.width
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.width
+false
+
+
+##----------------- MIN WIDTH ------------------##
+min-w-0		: 0px
+min-w-full	: 100%
+min-w-min	: min-content
+min-w-max	: max-content
+
+// CUSTOMIZING: theme.minWidth
+{
+	'0': '0',
+	'1/4': '25%',
+	'1/2': '50%',
+	'3/4': '75%',
+	'full': '100%',
+}
+
+// VARIANTS: variants.extend.minWidth
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.minWidth
+false
+
+
+##----------------- MAX WIDTH ------------------##
+max-w-0			: 0rem
+max-w-none		: none
+max-w-xs		: 20rem
+max-w-sm		: 24rem
+max-w-md		: 28rem
+max-w-lg		: 32rem
+max-w-xl		: 36rem
+max-w-2xl		: 42rem
+max-w-3xl		: 48rem
+max-w-4xl		: 56rem
+max-w-5xl		: 64rem
+max-w-6xl		: 72rem
+max-w-7xl		: 80rem
+max-w-full		: 100%
+max-w-min		: min-content
+max-w-max		: max-content
+max-w-prose		: 65ch // FOR READABILITY BASED ON FONT SIZE
+max-w-screen-sm	: 640px
+max-w-screen-md	: 768px
+max-w-screen-lg	: 1024px
+max-w-screen-xl	: 1280px
+max-w-screen-2xl: 1536px
+
+// CUSTOMIZING: theme.maxWidth
+{
+	'1/4': '25%',
+	'1/2': '50%',
+	'3/4': '75%'
+}
+
+// VARIANTS: variants.extend.maxWidth
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.maxWidth
+false
+
+
+##------------------- HEIGHT -------------------##
+h-n
+h-frac
+h-full		: 100%
+h-screen	: 100vh;
+h-auto		: auto
+
+n: same with padding
+frac: 1/2, 1/3, 2/3, 1/4, 3/4, 1/5, 2/5, 3/5, 4/5, 1/6, 5/6
+
+// CUSTOMIZING: theme.extend
+spacing
+{
+	'72': '18rem'
+}
+height
+{
+	'1/7': '14.2857143%'
+}
+
+// VARIANTS: variants.extend.height
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.width
+false
+
+
+##----------------- MIN HEIGHT -----------------##
+min-h-0		: 0px
+min-h-full	: 100%
+min-h-screen: 100vh
+
+// CUSTOMIZING: theme.minHeight
+{
+	'0': '0',
+	'1/4': '25%',
+	'1/2': '50%',
+	'3/4': '75%',
+	'full': '100%',
+}
+
+// VARIANTS: variants.extend.minHeight
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.minHeight
+false
+
+
+##----------------- MAX HEIGHT -----------------##
+max-h-n
+max-h-full		: 100%
+max-h-screen	: 100vh
+
+n: same as padding
+
+// CUSTOMIZING: theme.maxHeight
+{
+	'1/4': '25%',
+	'1/2': '50%',
+	'3/4': '75%'
+}
+
+// VARIANTS: variants.extend.maxHeight
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.maxHeight
+false
+
+
+
+##==============================================##
+##                                              ##
+##                  TYPOGRAPHY                  ##
+##                                              ##
+##==============================================##
+##---------------- FONT FAMILY -----------------##
+font-sans	font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+font-serif	font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+font-mono	font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+
+// CUSTOM: theme.fontFamily
+{
+	'display': ['Oswald']	
+}
+
+// VARIANTS: variants.extend.fontFamily
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.fontFamily
+false
+
+
+##----------------- FONT SIZE ------------------##
+// text-class
+class 	fontSize 	lineHeight
+xs 		0.750rem 	1.000rem
+sm 		0.875rem	1.250rem
+base 	0.875rem	1.250rem
+lg 		1.125rem	1.750rem
+xl 		1.250rem	1.750rem
+2xl 	1.500rem	2.000rem
+3xl 	1.875rem	2.250rem
+4xl 	2.250rem	2.500rem
+5xl 	3.000rem	1
+6xl 	3.750rem	1
+7xl 	4.500rem	1
+8xl 	6.000rem	1
+9xl 	8.000rem	1
+
+// DEFAULT LINE HEIGHT: theme.fontSize [fontSize, lineHeight]
+{
+	sm: ['14px', '20px']
+}
+
+// DEFAULT LETTER SPACING: theme.fontSize [fontSize, {lineHeight, letterSpacing}]
+{
+	sm: ['14px', {
+		lineHeight: '20px',
+		letterSpacing: '-0.01em'
+	}
+	]
+}
+
+// VARIANTS: variants.extend.fontSize
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.fontSize
+false
+
+
+##--------------- FONT SMOOTHING ---------------##
+antialiased				-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;
+subpixel-antialiased	-webkit-font-smoothing: auto; -moz-osx-font-smoothing: auto;
+
+// VARIANTS: variants.extend.fontSmoothing
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.fontSmoothing
+false
+
+
+##----------------- FONT STYLE -----------------##
+italic
+not-italic
+
+// VARIANTS: variants.extend.fontStyle
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.fontStyle
+false
+
+
+##---------------- FONT WEIGHT -----------------##
+thin 			: 100
+extralight 		: 200
+light 			: 300
+normal 			: 400
+medium 			: 500
+semibold 		: 600
+bold 			: 700
+extrabold 		: 800
+black 			: 900
+
+// CUSTOMIZATION: theme.fontWeight
+{
+	'extra-bold': 800
+}
+
+// VARIANTS: variants.extend.fontWeight
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.fontWeight
+false
+
+
+##------------ FONT NUMERIC VARIANT ------------##
+normal-nums			: Normal
+ordinal				: 1st, 2nd, 3rd get superscripted
+slashed-zero		: distinguish 0 and O.
+lining-nums 		: Align numeric glyphs by baseline
+oldstyle-nums		: Align numeric glyphs by descenders
+proportional-nums	: proportional widths of numbers
+tabular-nums		: Uniform widths of numbers
+diagonal-fractions	: 1/2 gets diagonalized
+stacked-fractions	: Diagonal but not close
+
+// VARIANTS: variants.extend.fontVariantNumeric
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.fontVariantNumeric
+false
+
+
+##--------------- LETTER SPACING ---------------##
+tracking-lighter	: -0.05em
+tracking-tight		: -0.025em
+tracking-normal		: 0em
+tracking-wide		: 0.025em
+tracking-wider		: 0.05em
+tracking-widest		: 0.1em
+
+// VARIANTS: variants.extend.letterSpacing
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.letterSpacing
+false
+
+
+##---------------- LINE HEIGHT -----------------##
+// FIXED
+leading-3	: 0.75rem
+leading-4	: 1rem
+leading-5	: 1.25rem
+leading-6	: 1.5rem
+leading-7	: 1.75rem
+leading-8	: 2rem
+leading-9	: 2.25rem
+leading-10	: 2.5rem
+
+// RELATIVE
+none		: 1
+tight		: 1.25
+snug		: 1.375
+normal		: 1.5
+relaxed		: 1.625
+loose		: 2
+
+// CUSTOMIZATION: theme.extend.lineHeight
+{
+	'extra-loose': '2.5',
+	'12': '3rem'
+}
+
+// VARIANTS: variants.extend.lineHeight
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.lineHeight
+false
+
+
+##-------------- LIST STYLE TYPE ---------------##
+list-none
+list-disc
+list-decimal
+
+// VARIANTS: variants.extend.kustStyleType
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.kustStyleType
+false
+
+
+##------------ LIST STYLE POSITION -------------##
+list-inside
+list-outside
+
+// VARIANTS: variants.extend.listStyleType
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.listStyleType
+false
+
+
+##------------- PLACEHOLDER COLOR --------------##
+placeholder-transparent
+placeholder-current
+placeholder-black
+placeholder-white
+placeholder-colorType-intensity
+
+colorTypes: gray, red, yellow, green, blue, indigo, purple, pink
+intensity : 50, 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+// CUSTOMIZATION: theme.placeHolderColor
+{
+	'primary': '#3490dc',
+	'secondary': '#ffed4a',
+	'danger': '#e3342f',
+}
+
+// VARIANTS: variants.extend.placeholderColor
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.placeholderColor
+false
+
+
+##------------ PLACEHOLDER OPACITY -------------##
+placeholder-opacity-n
+
+n: 0 to 100 at multiples of 5
+
+// CUSTOMIZATION: theme.extend.opacity / placeholderOpacity
+{
+	'15': '0.15',
+	'35': '0.35',
+	'65': '0.65',
+}
+
+// VARIANTS: variants.extend.placeholderColor
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.placeholderColor
+false
+
+
+##--------------- TEXT ALIGNMENT ---------------##
+text-left
+text-center
+text-right
+text-justify
+
+// VARIANTS: variants.extend.placeholderColor
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.placeholderColor
+false
+
+
+##----------------- TEXT COLOR -----------------##
+text-transparent
+text-current
+text-black
+text-white
+text-colorType-intensity
+
+colorTypes: gray, red, yellow, green, blue, indigo, purple, pink
+intensity : 50, 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+// CUSTOMIZATION: theme.textColor
+{
+	'primary': '#3490dc',
+	'secondary': '#ffed4a',
+	'danger': '#e3342f',
+}
+
+// VARIANTS: variants.extend.textColor
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.textColor
+false
+
+
+##---------------- TEXT OPACITY ----------------##
+// MAKE SURE TO USE WITH COLOR AND NOT INHERITED COLOR
+text-opacity-n
+
+n: 0 to 100 at multiples of 5
+
+// CUSTOMIZATION: theme.extend.opacity / textOpacity
+{
+	'15': '0.15',
+	'35': '0.35',
+	'65': '0.65',
+}
+
+// VARIANTS: variants.extend.textColor
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.textColor
+false
+
+
+##-------------- TEXT DECORATION ---------------##
+underline
+line-through
+no-underline
+
+// VARIANTS: variants.extend.textColor
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.textColor
+false
+
+
+##--------------- TEXT TRANSFORM ---------------##
+uppercase
+lowercase
+capitalize
+normal-case
+
+// VARIANTS: variants.extend.textColor
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.textColor
+false
+
+
+##--------------- TEXT OVERFLOW ----------------##
+truncate			: ... whole text
+overflow-ellipsis	: ... by word
+overflow-clip		: truncate text at limit of content area
+
+// VARIANTS: variants.extend.textOverflow
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.textOverflow
+false
+
+
+##------------- VERTICAL ALIGNMENT -------------##
+align-baseline		: baseline of element w/ parent
+align-top 			: align top of an element and descendants
+align-middle		: align middle of element w/ baseline + half height of parent.
+align-bottom 		: align bottom of an element and descendants
+align-text-top		: align to top of paren element' font
+align-text-bottom
+
+// VARIANTS: variants.extend.verticalAlign
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.verticalAlign
+false
+
+
+##----------------- WHITESPACE -----------------##
+whitespace-normal	: Collapse newlines and spaces 		| wrap
+whitespace-nowrap	: Collapse newlines and spaces 		| no wrap
+whitespace-pre 		: Preserve newlines and spaces 		| no wrap
+whitespace-pre-line : Preserve newlines but not spaces	| wrap
+whitespace-pre-wrap : Preserve newlines and spaces		| wrap
+
+// VARIANTS: variants.extend.textOverflow
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.textOverflow
+false
+
+
+##----------------- WORD BREAK -----------------##
+break-normal 	: Add linebreaks at normal word break points.
+break-words		: Add linebreaks mid word if needed
+break-all		: breaks whenever necessary without preserving whole words
+
+// VARIANTS: variants.extend.verticalAlign
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.verticalAlign
+false
