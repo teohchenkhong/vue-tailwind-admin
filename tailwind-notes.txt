@@ -4,6 +4,7 @@
 ##                                              ##
 ##==============================================##
 1) npm install -D tailwindcss@latest postcss@latest autoprefixer@latest
+npm install -D tailwindcss@npm:@tailwindcss/postcss7-compat postcss@^7 autoprefixer@^9
 2) add src/assets/css/tailwind.css with:
 	@tailwind base;
 	@tailwind components;
@@ -1683,7 +1684,7 @@ table-row-group
 table-row
 flow-root			: Blocks with own block formatting context (layour occuring, floats interact with other elements)
 grid 				: Creates grids for its children (grid container)
-inline-grid			: Creates grids for its children (multiple side by side <span class = "inline-grid"></span><span class = "inline-grid"></span>)
+inline-grid			: Creates grids(multiple side by side <span class = "inline-grid"></span><span class = "inline-grid"></span>)
 contents			: Creates phantom container, its children act like direct children of parent
 list-item
 hidden 				: Display none
@@ -2891,3 +2892,1333 @@ break-all		: breaks whenever necessary without preserving whole words
 
 // COMPLETE DISABLING: corePlugins.verticalAlign
 false
+
+
+
+##==============================================##
+##                                              ##
+##                  BACKGROUND                  ##
+##                                              ##
+##==============================================##
+##----------------- ATTACHMENT -----------------##
+bg-fixed	- Fixed relative to viewport
+bg-local	- Scroll image with container
+bg-scroll	- scroll with viewport not container
+
+// VARIANTS: variants.extend.backgroundAttachment
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.backgroundAttachment
+false
+
+
+##-------------------- CLIP --------------------##
+bg-clip-border		- Include padding + margin
+bg-clip-padding		- Exclude margin
+bg-clip-content		- Exclude padding
+bg-clip-text		- Crop bg image to text
+
+// VARIANTS: variants.extend.backgroundClip
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.backgroundClip
+false
+
+
+##------------------- COLOR --------------------##
+bg-type
+bg-color-num
+
+type: transparent, current, black, white
+color: gray, red, yellow, green, blue, indigo, purple, pink
+num: 50, 100, 200, 300, 400, 500, 600, 700, 800, 900
+
+// CUSTOMIZE: theme.backgroundColor
+
+// VARIANTS: variants.extend.backgroundColor
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.backgroundColor
+false
+
+
+##------------------ OPACITY -------------------##
+bg-opacity-n
+
+n: 0 - 100 at 5 increments
+
+// VARIANTS: variants.extend.backgroundOpacity
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.backgroundOpacity
+false
+
+
+##------------------- ORIGIN -------------------##
+bg-origin-border	: Include margin
+bg-origin-padding	: Exclude margin
+bg-origin-content	: Exclude padding
+
+// VARIANTS: variants.extend.backgroundOrigin
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.backgroundOrigin
+false
+
+
+##------------------ POSITION ------------------##
+bg-bottom
+bg-center
+bg-left
+bg-left-bottom
+bg-left-top
+bg-right
+bg-right-bottom
+bg-right-top
+bg-top
+
+// CUSTOMIZE theme.backgroundPosition
+{
+	'bottom-4': 'center bottom 1rem'
+}
+
+// VARIANTS: variants.extend.backgroundPosition
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.backgroundPosition
+false
+
+
+##------------------- REPEAT -------------------##
+bg-repeat
+bg-no-repeat
+bg-repeat-x
+bg-repeat-y
+bg-repeat-round
+bg-repeat-space
+
+// VARIANTS: variants.extend.backgroundRepeat
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.backgroundRepeat
+false
+
+
+##------------------- SIZING -------------------##
+bg-auto
+bg-cover
+bg-contain
+
+// VARIANTS: variants.extend.backgroundSize
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.backgroundSize
+false
+
+
+##------------------- IMAGE --------------------##
+bg-none
+bg-gradient-to-t
+bg-gradient-to-tr
+bg-gradient-to-r
+bg-gradient-to-br
+bg-gradient-to-b
+bg-gradient-to-bl
+bg-gradient-to-l
+bg-gradient-to-tl
+
+// CUSTOMIZE theme.extend.backgroundImage
+{
+	'hero-pattent': "url('dsadas')"
+}
+
+// VARIANTS: variants.extend.backgroundImage
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.backgroundImage
+false
+
+
+##------------ GRADIENT COLOR STOPS ------------##
+from-type
+from-color-n
+to-type
+to-color-n
+via-type
+via-color-n
+
+// to-transparent is by default
+
+// CUSTOMIZE theme.gradientColorStops
+{
+	...theme('colors'),
+	'primary': '#3490dc'
+}
+
+// VARIANTS: variants.extend.gradientColorStops
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.gradientColorStops
+false
+
+
+
+##==============================================##
+##                                              ##
+##                   BORDERS                    ##
+##                                              ##
+##==============================================##
+##------------------- RADIUS -------------------##
+rounded-none
+rounded-sm
+rounded
+rounded-md
+rounded-lg
+rounded-xl
+rounded-2xl
+rounded-3xl
+rounded-full
+
+t-{}
+r-{}
+b-{}
+l-{}
+tl-{}
+
+// CUSTOMIZE theme.borderRadius
+{
+	DEFAULT: '4px'
+}
+
+// VARIANTS: variants.extend.borderRadius
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.borderRadius
+false
+tr-{}
+br-{}
+bl-{}
+
+
+##------------------- WIDTH --------------------##
+border-0
+border-2
+border-4
+border-8
+border
+
+t-{}
+r-{}
+b-{}
+l-{}
+tl-{}
+tr-{}
+br-{}
+bl-{}
+
+// BETWEEN ELEMENTS 
+divide-y-{}
+divide-x-{}
+divide-color
+
+// CUSTOMIZE theme.borderWidth
+{
+	'3': '3px'
+}
+
+// VARIANTS: variants.extend.borderWidth
+['hover', 'focus']
+
+// COMPLETE DISABLING: corePlugins.borderWidth
+false
+
+
+##------------------- COLOR --------------------##
+border-type
+border-color-n
+
+// CUSTOMIZE theme.borderColor
+{
+	...theme('colors'),
+	'primary': '#3490dc'
+}
+
+// VARIANTS: variants.extend.borderColor
+['active']
+
+// COMPLETE DISABLING: corePlugins.borderColor
+false
+
+
+##------------------ OPACITY -------------------##
+border-opacity-n
+
+n: 0 - 100 increments of 5
+
+// CUSTOMIZE theme.extend.borderOpacity
+{
+	'10': '0.1'
+}
+
+// VARIANTS: variants.extend.borderOpacity
+['active']
+
+// COMPLETE DISABLING: corePlugins.borderOpacity
+false
+
+
+##------------------- STYLE --------------------##
+border-solid
+border-dashed
+border-dotted
+border-double
+border-none
+
+// VARIANTS: variants.extend.borderStyle
+['active']
+
+// COMPLETE DISABLING: corePlugins.borderStyle
+false
+
+
+##---------------- DIVIDE WIDTH ----------------##
+divide-x-n
+divide-y-n
+divide-x-reverse
+divide-y-reverse
+
+n: 0,2,4,8
+
+// VARIANTS: variants.extend.divideWidth
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.divideWidth
+false
+
+
+##---------------- DIVIDE COLOR ----------------##
+divide-type
+divide-color-n
+
+// CUSTOMIZE theme.divideColor
+{
+	...theme('borderColors'),
+	'primary': '#3490dc'
+}
+
+// VARIANTS: variants.extend.divideColor
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.divideColor
+false
+
+
+##--------------- DIVIDE OPACITY ---------------##
+divide-opacity-n
+
+n: 0 - 100 inc 5
+
+// CUSTOMIZE theme.extend.divideOpacity
+{
+	'10': '0.1'
+}
+
+// VARIANTS: variants.extend.divideOpacity
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.divideOpacity
+false
+
+
+##---------------- DIVIDE STYLE ----------------##
+divide-solid
+divide-dashed
+divide-dotted
+divide-double
+divide-none
+
+// VARIANTS: variants.extend.divideStyle
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.divideStyle
+false
+
+
+##----------------- RING WIDTH -----------------##
+ring-0
+ring-1
+ring-2
+ring
+ring-4
+ring-8
+ring-inset
+
+// VARIANTS: variants.extend.ringWidth
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.ringWidth
+false
+
+
+##----------------- RING COLOR -----------------##
+ring-type
+ring-color-n
+
+// CUSTOMIZE theme.ringColor
+{
+	'primary': '#3490dc'
+}
+
+// VARIANTS: variants.extend.ringColor
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.ringColor
+false
+
+
+##---------------- RING OPACITY ----------------##
+ring-opacity-n
+
+n: 0 - 100 inc 5
+
+// CUSTOMIZE theme.extend.ringOpacity
+{
+	'10': '0.1'
+}
+
+// VARIANTS: variants.extend.ringOpacity
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.ringOpacity
+false
+
+
+##------------- RING OFFSET WIDTH --------------##
+ring-offset-0
+ring-offset-1
+ring-offset-2
+ring-offset-4
+ring-offset-8
+
+// CUSTOMIZE theme.extend.ringOffsetWidth
+{
+	'10': '0.1'
+}
+
+// VARIANTS: variants.extend.ringOffsetWidth
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.ringOffsetWidth
+false
+
+
+##------------- RING OFFSET COLOR --------------##
+ring-offset-type
+ring-offset-color-n
+
+// CUSTOMIZE theme.ringOffsetColor
+{
+	'primary': '#3490dc'
+}
+
+// VARIANTS: variants.extend.ringOffsetColor
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.ringOffsetColor
+false
+
+
+
+##==============================================##
+##                                              ##
+##                   EFFECTS                    ##
+##                                              ##
+##==============================================##
+##----------------- BOX SHADOW -----------------##
+*, ::beforem ::after
+shadow-sm
+shadow
+shadow-md
+shadow-lg
+shadow-xl
+shadow-2xl
+shadow-inner
+shadow-none
+
+// CUSTOMIZE theme.boxShadow
+{
+	'3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)'
+}
+
+// VARIANTS: variants.extend.boxShadow
+['active']
+
+// COMPLETE DISABLING: corePlugins.boxShadow
+false
+
+
+##------------------ OPACITY -------------------##
+opacity-n
+
+n: 0 - 100 inc 5
+
+// CUSTOMIZE theme.extend.opacity
+{
+	'10': '0.1'
+}
+
+// VARIANTS: variants.extend.opacity
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.opacity
+false
+
+
+##--------------- MIX BLEND MODE ---------------##
+mix-blend-normal
+mix-blend-multiply
+mix-blend-screen
+mix-blend-overlay
+mix-blend-darken
+mix-blend-lighten
+mix-blend-color-dodge
+mix-blend-color-burn
+mix-blend-hard-light
+mix-blend-soft-light
+mix-blend-difference
+mix-blend-exclusion
+mix-blend-hue
+mix-blend-saturation
+mix-blend-color
+mix-blend-luminosity
+
+// VARIANTS: variants.extend.mixBlendMode
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.mixBlendMode
+false
+
+
+##----------- BACKGROUND BLEND MODE ------------##
+bg-blend-normal
+bg-blend-multiply
+bg-blend-screen
+bg-blend-overlay
+bg-blend-darken
+bg-blend-lighten
+bg-blend-color-dodge
+bg-blend-color-burn
+bg-blend-hard-light
+bg-blend-soft-light
+bg-blend-difference
+bg-blend-exclusion
+bg-blend-hue
+bg-blend-saturation
+bg-blend-color
+bg-blend-luminosity
+
+// VARIANTS: variants.extend.mixBlendMode
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.mixBlendMode
+false
+
+
+
+##==============================================##
+##                                              ##
+##                    FILTER                    ##
+##                                              ##
+##==============================================##
+##------------------- FILTER -------------------##
+filter
+filter-none
+
+// VARIANTS: variants.extend.filter
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.filter
+false
+
+
+##-------------------- BLUR --------------------##
+blur-none
+blur-sm
+blur
+blur-md
+blur-lg
+blur-xl
+blur-2xl
+blur-3xl
+
+// CUSTOMIZE theme.extend.blur
+{
+	'xs': '2px'
+}
+
+// VARIANTS: variants.extend.blur
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.blur
+false
+
+
+##----------------- BRIGHTNESS -----------------##
+brightness-n
+
+n: 0, 50, 75, 90, 95, 100, 105, 110, 125, 150, 200
+
+// CUSTOMIZE theme.extend.brightness
+{
+	'175': '1.75'
+}
+
+// VARIANTS: variants.extend.brightness
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.brightness
+false
+
+
+##------------------ CONTRAST ------------------##
+contrast-n
+
+n: 0, 50, 75, 100, 125, 150, 200
+
+// CUSTOMIZE theme.extend.contrast
+{
+	'25': '.25'
+}
+
+// VARIANTS: variants.extend.contrast
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.contrast
+false
+
+
+##---------------- DROP SHADOW -----------------##
+drop-shadow-sm
+drop-shadow
+drop-shadow-md
+drop-shadow-lg
+drop-shadow-xl
+drop-shadow-2xl
+drop-shadow-none
+
+n: 0, 50, 75, 100, 125, 150, 200
+
+// CUSTOMIZE theme.extend.dropShadow
+{
+	'3xl': '0 35px 35px rgba(0, 0, 0, 0.25)'
+}
+
+// VARIANTS: variants.extend.dropShadow
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.dropShadow
+false
+
+
+##----------------- GRAYSCALE ------------------##
+grayscale-0
+grayscale
+
+// CUSTOMIZE theme.extend.grayscale
+{
+	50: '50%'
+}
+
+// VARIANTS: variants.extend.grayscale
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.grayscale
+false
+
+
+##----------------- HUE ROTATE -----------------##
+-hue-rotate-180
+-hue-rotate-90
+-hue-rotate-60
+-hue-rotate-30
+-hue-rotate-15
+hue-rotate-0
+hue-rotate-15
+hue-rotate-30
+hue-rotate-60
+hue-rotate-90
+hue-rotate-180
+
+// CUSTOMIZE theme.extend.hueRotate
+{
+	270: '270deg'
+}
+
+// VARIANTS: variants.extend.hueRotate
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.hueRotate
+false
+
+
+##------------------- INVERT -------------------##
+invert-0
+invert
+
+// CUSTOMIZE theme.extend.invert
+{
+	50: '50%'
+}
+
+// VARIANTS: variants.extend.invert
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.invert
+false
+
+
+##------------------ SATURATE ------------------##
+saturate-0
+saturate-50
+saturate-100
+saturate-150
+saturate-200
+
+// CUSTOMIZE theme.extend.saturate
+{
+	25: '.25'
+}
+
+// VARIANTS: variants.extend.saturate
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.saturate
+false
+
+
+##------------------- SEPIA --------------------##
+sepia-0
+sepia
+
+// CUSTOMIZE theme.extend.sepia
+{
+	25: '.25'
+}
+
+// VARIANTS: variants.extend.sepia
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.sepia
+false
+
+
+
+##-------------- BACKDROP FILTER ---------------##
+backdrop-filter
+backdrop-filter-none
+
+// VARIANTS: variants.extend.backdropFilter
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.backdropFilter
+false
+
+
+##--------------- BACKDROP BLUR ----------------##
+backdrop-blur-none
+backdrop-blur-sm
+backdrop-blur
+backdrop-blur-md
+backdrop-blur-lg
+backdrop-blur-xl
+backdrop-blur-2xl
+backdrop-blur-3xl
+
+// CUSTOMIZE theme.extend.backdropBlur
+{
+	'xs': '2px'
+}
+
+// VARIANTS: variants.extend.backdropBlur
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.backdropBlur
+false
+
+
+##------------- BACKDROP BRIGHTNESS ------------##
+backdrop-brightness-n
+
+n: 0, 50, 75, 90, 95, 100, 105, 110, 125, 150, 200
+
+// CUSTOMIZE theme.extend.backdropBrightness
+{
+	'175': '1.75'
+}
+
+// VARIANTS: variants.extend.backdropBrightness
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.backdropBrightness
+false
+
+
+##-------------- BACKDROP CONTRAST -------------##
+backdrop-contrast-n
+
+n: 0, 50, 75, 100, 125, 150, 200
+
+// CUSTOMIZE theme.extend.backdropContrast
+{
+	'25': '.25'
+}
+
+// VARIANTS: variants.extend.backdropContrast
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.backdropContrast
+false
+
+
+##------------- BACKDROP GRAYSCALE -------------##
+grayscale-0
+grayscale
+
+// CUSTOMIZE theme.extend.grayscale
+{
+	50: '50%'
+}
+
+// VARIANTS: variants.extend.grayscale
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.grayscale
+false
+
+
+##------------ BACKDROP HUE ROTATE -------------##
+-backdrop-hue-rotate-180
+-backdrop-hue-rotate-90
+-backdrop-hue-rotate-60
+-backdrop-hue-rotate-30
+-backdrop-hue-rotate-15
+backdrop-hue-rotate-0
+backdrop-hue-rotate-15
+backdrop-hue-rotate-30
+backdrop-hue-rotate-60
+backdrop-hue-rotate-90
+backdrop-hue-rotate-180
+
+// CUSTOMIZE theme.extend.backdropHueRotate
+{
+	270: '270deg'
+}
+
+// VARIANTS: variants.extend.backdropHueRotate
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.backdropHueRotate
+false
+
+
+##-------------- BACKDROP INVERT ---------------##
+backdrop-invert-0
+backdrop-invert
+
+// CUSTOMIZE theme.extend.backdropInvert
+{
+	50: '50%'
+}
+
+// VARIANTS: variants.extend.backdropInvert
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.backdropInvert
+false
+
+
+##-------------- BACKDROP OPACITY --------------##
+backdrop-opacity-n
+
+n: 0 - 100 inc 5
+
+// CUSTOMIZE theme.extend.backdropOpacity
+{
+	'10': '0.1'
+}
+
+// VARIANTS: variants.extend.backdropOpacity
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.backdropOpacity
+false
+
+
+##-------------- BACKDROP SATURATE -------------##
+backdrop-saturate-0
+backdrop-saturate-50
+backdrop-saturate-100
+backdrop-saturate-150
+backdrop-saturate-200
+
+// CUSTOMIZE theme.extend.backdropSaturate
+{
+	25: '.25'
+}
+
+// VARIANTS: variants.extend.backdropSaturate
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.backdropSaturate
+false
+
+
+##--------------- BACKDROP SEPIA ---------------##
+backdrop-sepia-0
+backdrop-sepia
+
+// CUSTOMIZE theme.extend.backdropSepia
+{
+	25: '.25'
+}
+
+// VARIANTS: variants.extend.backdropSepia
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.backdropSepia
+false
+
+
+
+##==============================================##
+##                                              ##
+##                    TABLES                    ##
+##                                              ##
+##==============================================##
+##-------------- BORDER COLLAPSE ---------------##
+border-collapse
+border-separate
+
+// VARIANTS: variants.extend.borderCollapse
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.borderCollapse
+false
+
+
+##---------------- TABLE LAYOUT ----------------##
+table-auto		: Auto resize
+table-fixed		: Fixed and define in thead's th
+
+// VARIANTS: variants.extend.tableLayout
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.tableLayout
+false
+
+
+
+##==============================================##
+##                                              ##
+##                  TRANSITION                  ##
+##                                              ##
+##==============================================##
+##------------ TRANSITION PROPERTY -------------##
+transition-none
+transition-all
+transition
+transition-colors
+transition-opacity
+transition-shadow
+transition-transform
+
+motion-reduce:transition-none
+motion-reduce:transform-none
+
+// CUSTOMIZE theme.extend.transitionProperty
+{
+	height: 'height',
+	spacing: 'margin, padding'
+}
+
+// VARIANTS: variants.extend.transitionProperty
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.transitionProperty
+false
+
+
+##------------ TRANSITION DURATION -------------##
+duration-n
+
+n: 75, 100, 150, 200, 300, 500, 700, 1000
+
+// CUSTOMIZE theme.extend.transitionDuration
+{
+	2000: '2000ms'
+}
+
+// VARIANTS: variants.extend.transitionDuration
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.transitionDuration
+false
+
+
+##--------- TRANSITION TIMING FUNCTION ---------##
+ease-linear
+ease-in
+ease-out
+ease-in-out
+
+n: 75, 100, 150, 200, 300, 500, 700, 1000
+
+// CUSTOMIZE theme.extend.transitionTimingFunction
+{
+	'in-expo': 'cubic-bezier(0.95, 0.05, 0.795, 0.035)',
+}
+
+// VARIANTS: variants.extend.transitionTimingFunction
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.transitionTimingFunction
+false
+
+
+##-------------- TRANSITION DELAY --------------##
+delay-n
+
+n: 75, 100, 150, 200, 300, 500, 700, 1000
+
+// CUSTOMIZE theme.extend.transitionDelay
+{
+	'in-expo': 'cubic-bezier(0.95, 0.05, 0.795, 0.035)',
+}
+
+// VARIANTS: variants.extend.transitionDelay
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.transitionDelay
+false
+
+
+##----------------- ANIMATION ------------------##
+animate-none
+animate-spin
+animate-ping
+animate-pulse
+animate-bounce
+
+// CUSTOMIZE theme.extend
+animation
+{
+	'spin-slow': 'spin 3s linear infinite'
+}
+
+keyframes
+{
+	'0%, 100%': { transform: 'rotate(-3deg)' }
+}
+animation
+{
+	wiggle: 'wiggle 1s ease-in-out infinite',
+}
+
+// VARIANTS: variants.extend.animation
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.animation
+false
+
+
+
+##==============================================##
+##                                              ##
+##                TRANSFORMATION                ##
+##                                              ##
+##==============================================##
+##------------- TRANSFORM PROPERTY -------------##
+transform 		: Enable transform
+transform-gpu	: Same in GPU
+transform-none	: Disable transform
+
+// VARIANTS: variants.extend.transform
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.transform
+false
+
+
+##-------------- TRANSFORM ORIGIN --------------##
+origin-center
+origin-top
+origin-top-right
+origin-right
+origin-bottom-right
+origin-bottom
+origin-bottom-left
+origin-left
+origin-top-left
+
+// CUSTOMIZE theme.extend.transformOrigin
+{
+	'24': '6rem',
+	'full': '100%'
+}
+
+// VARIANTS: variants.extend.transformOrigin
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.transformOrigin
+false
+
+
+##------------------- SCALE --------------------##
+scale-n
+scale-x-n
+scale-y-n
+
+n: 0, 50, 57, 90, 95, 100, 105, 110, 125, 150
+
+// CUSTOMIZE theme.extend.scale
+{
+	'25': '.25'
+}
+
+// VARIANTS: variants.extend.scale
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.scale
+false
+
+
+##------------------- ROTATE -------------------##
+rotate-n
+-rotate-n
+
+n: 0, 1, 2, 3, 6, 12, 45, 90, 180
+
+// CUSTOMIZE theme.extend.rotate
+{
+	'270': '270deg'
+}
+
+// VARIANTS: variants.extend.rotate
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.rotate
+false
+
+
+##----------------- TRANSLATE ------------------##
+translate-x-n
+-translate-x-n
+translate-y-n
+-translate-y-n
+
+n: 0, px, 0.5, 1, 1.5, 2.5, 3, 3.5, 4, 5, 6, 7, 8, 9, 10, 11, 12, 14, 16, 20, 24, 28, 32, 36, 40, 44, 48, 52, 56, 60, 64, 72, 80, 96
+%: 1/2, 1/3, 2/3, 1/4, 3/4, full
+
+// CUSTOMIZE theme.extend.translate
+{
+	'1/7': '14.2857143%'
+}
+
+// VARIANTS: variants.extend.translate
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.translate
+false
+
+
+##-------------------- SKEW --------------------##
+skew-x-n
+-skew-x-n
+skew-y-n
+-skew-y-n
+
+n: 0, 1, 2, 4, 6, 12
+
+// CUSTOMIZE theme.extend.skew
+{
+	'25': '25deg'
+}
+
+// VARIANTS: variants.extend.skew
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.skew
+false
+
+
+
+##==============================================##
+##                                              ##
+##                INTERACTIVITY                 ##
+##                                              ##
+##==============================================##
+##----------------- APPEARANCE -----------------##
+appearance : Suppresses native form control styling
+
+// VARIANTS: variants.extend.apperance
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.apperance
+false
+
+
+##------------------- CURSOR -------------------##
+cursor-type
+
+type: auto, default, pointer, wait, text, move, help, not-allowed
+
+// VARIANTS: variants.extend.cursor
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.cursor
+false
+
+
+##------------------- CURSOR -------------------##
+outline-type
+
+type: none, white, black
+
+// CUSTOMIZE theme.extend.outline
+{
+	// name: [line, offset]
+	'blue': ['2px solid #0000ff', '1px']
+}
+
+// VARIANTS: variants.extend.outline
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.outline
+false
+
+
+##--------------- POINTER EVENTS ---------------##
+pointer-event-none 	: Event passes through
+pointer-event-auto	: Event does not trigger on child elements
+
+// VARIANTS: variants.extend.pointerEvents
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.pointerEvents
+false
+
+
+##------------------- RESIZE -------------------##
+resize-none
+resize-x
+resize-y
+resize
+
+// VARIANTS: variants.extend.resize
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.resize
+false
+
+
+##---------------- USER SELECT -----------------##
+select-none	: Prevent selecting text itself & children
+select-text	: Allow itself & children
+select-all	: Select all in one click
+select-auto	: Use default browser behaviour
+
+// VARIANTS: variants.extend.userSelect
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.userSelect
+false
+
+
+
+##==============================================##
+##                                              ##
+##                     SVG                      ##
+##                                              ##
+##==============================================##
+##-------------------- FILL --------------------##
+fill-current : Fill color of svg with current text color
+
+// CUSTOMIZE theme.fill
+theme =>({
+	red: theme('colors.red.500')
+})
+
+// VARIANTS: variants.extend.fill
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.fill
+false
+
+
+##------------------- STROKE -------------------##
+stroke-current : Stroke color of svg with current text color
+
+// CUSTOMIZE theme.stroke
+theme =>({
+	red: theme('colors.red.500')
+})
+
+// VARIANTS: variants.extend.stroke
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.stroke
+false
+
+
+##---------------- STROKE WIDTH ----------------##
+stroke-n
+
+n: 0, 1, 2
+
+// CUSTOMIZE theme.extend.strokeWidth
+{
+	'3': '3',
+	'4': '4'
+}
+
+// VARIANTS: variants.extend.strokeWidth
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.strokeWidth
+false
+
+
+
+##==============================================##
+##                                              ##
+##                ACCESSIBILITY                 ##
+##                                              ##
+##==============================================##
+##--------------- SCREEN READERS ---------------##
+sr-only 		: Read out but not visible
+not-sr-only		: Visibile and read out
+
+// VARIANTS: variants.extend.strokeWidth
+['hover','focus']
+
+// COMPLETE DISABLING: corePlugins.strokeWidth
+false
+
+
+
+##==============================================##
+##                                              ##
+##               OFFICIAL PLUGINS               ##
+##                                              ##
+##==============================================##
+TYPOGRAPHY
+https://github.com/tailwindlabs/tailwindcss-typography
+
+FORMS
+https://github.com/tailwindlabs/tailwindcss-forms
+
+ASPECT RATIO
+https://github.com/tailwindlabs/tailwindcss-aspect-ratio
+
+LINE CLAMP
+https://github.com/tailwindlabs/tailwindcss-line-clamp

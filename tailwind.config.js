@@ -4,16 +4,23 @@ module.exports = {
 	theme: {
 		extend: {
 			colors:{
-				primary: "#60023",
-				dark: "#1111",
-				light: "#EFEFEF",
-				lightHover: "#d7d7d7",
-				muted: "#717171"
+				"primary": "#3506a0",
+				"secondary": "#684dd8",
+				"info": "#4a6ee9",
+				"warning": "#ce8506",
+				"danger": "#c92f61",
+				"success": "#17ecb2",
+				"light": "#6f5499",
+				"dark": "#1b0738"
 			}
 		},
 	},
 	variants: {
-		extend: {},
+		extend: {
+			width: ["responsive"],
+			flexGrow: ["focus-within"],
+			translate: ["responsive"]
+		},
 	},
 	plugins: [],
 }
